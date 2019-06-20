@@ -15,13 +15,14 @@ import MailIcon from "@material-ui/icons/Mail";
 import NotificationsIcon from "@material-ui/icons/Notifications";
 import MoreIcon from "@material-ui/icons/MoreVert";
 import SwipeableDrawer from "@material-ui/core/SwipeableDrawer";
-import Button from "@material-ui/core/Button";
 import List from "@material-ui/core/List";
-import Divider from "@material-ui/core/Divider";
 import ListItem from "@material-ui/core/ListItem";
-import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
-import InboxIcon from "@material-ui/icons/MoveToInbox";
+import { Link } from "@reach/router";
+
+const AdapterLink = React.forwardRef((props, ref) => (
+  <Link innerRef={ref} {...props} />
+));
 
 const useStyles = makeStyles(theme => ({
   list: {
@@ -121,13 +122,28 @@ const Header = props => {
       onKeyDown={toggleDrawer(side, false)}
     >
       <List>
-        {["Home", "Categories", "Sign Up", "Profile", "About Us"].map(
-          (text, index) => (
-            <ListItem button key={text}>
-              <ListItemText primary={text} />
-            </ListItem>
-          )
-        )}
+        {/* {["Home", "Categories", "Sign Up", "Profile", "About Us"].map(
+          (text, index) => ( */}
+        <ListItem button component={AdapterLink} to="/" key="home">
+          <ListItemText primary="Home" />
+        </ListItem>
+        <ListItem
+          button
+          component={AdapterLink}
+          to="/categories"
+          key="categories"
+        >
+          <ListItemText primary="Categories" />
+        </ListItem>
+        <ListItem button component={AdapterLink} to="/sign_up" key="sign_up">
+          <ListItemText primary="Sign Up" />
+        </ListItem>
+        <ListItem button component={AdapterLink} to="/profile" key="profile">
+          <ListItemText primary="Profile" />
+        </ListItem>
+        <ListItem button component={AdapterLink} to="/about_us" key="about_us">
+          <ListItemText primary="About Us" />
+        </ListItem>
       </List>
     </div>
   );
