@@ -6,6 +6,12 @@ import * as serviceWorker from "./serviceWorker";
 import "typeface-roboto";
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core";
 import { orange, yellow } from "@material-ui/core/colors";
+import { ApolloProvider } from "react-apollo";
+import ApolloClient from "apollo-boost";
+
+const client = new ApolloClient({
+  uri: "https://fencs-back-end.herokuapp.com/v1/graphql"
+});
 
 const theme = createMuiTheme({
   palette: {
@@ -20,7 +26,9 @@ const theme = createMuiTheme({
 
 ReactDOM.render(
   <MuiThemeProvider theme={theme}>
-    <App />
+    <ApolloProvider client={client}>
+      <App />
+    </ApolloProvider>
   </MuiThemeProvider>,
   document.getElementById("root")
 );

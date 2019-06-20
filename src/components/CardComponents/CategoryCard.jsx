@@ -17,16 +17,15 @@ const useStyles = makeStyles({
   }
 });
 
-export default function CategoryCard() {
+export default function CategoryCard(props) {
   const classes = useStyles();
-
+  console.log(props.category.img_url);
   return (
     <Card className={classes.card}>
       <CardActionArea>
         <CardMedia
           className={classes.media}
-          image="https://images.unsplash.com/photo-1459262838948-3e2de6c1ec80?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&dl=jordan-whitt-78672-unsplash.jpg
-          "
+          image={props.category.img_url}
           title="Contemplative Reptile"
         />
         <CardContent>
