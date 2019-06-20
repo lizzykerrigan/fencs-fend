@@ -172,7 +172,7 @@ const Header = props => {
             <MenuIcon />
           </IconButton>
           <Typography className={classes.title} variant="h6" noWrap>
-            Material-UI
+            Print Stuffs
           </Typography>
           <div className={classes.search}>
             <div className={classes.searchIcon}>

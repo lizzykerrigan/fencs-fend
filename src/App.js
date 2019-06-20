@@ -1,14 +1,14 @@
 import "./App.css";
 import React, { Component } from "react";
-import Header from "./components/header/Header";
-import CategoryCard from "./components/CardComponents/CategoryCard";
+import Header from "./components/Header/Header";
+import CategoriesPage from "./components/CategoriesPage/CategoriesPage";
 
 export default class App extends Component {
   render() {
     return (
       <div>
         <Header />
-        <CategoryCard />
+        <CategoriesPage />
       </div>
     );
   }
