@@ -14,8 +14,22 @@ import AccountCircle from "@material-ui/icons/AccountCircle";
 import MailIcon from "@material-ui/icons/Mail";
 import NotificationsIcon from "@material-ui/icons/Notifications";
 import MoreIcon from "@material-ui/icons/MoreVert";
+import SwipeableDrawer from "@material-ui/core/SwipeableDrawer";
+import Button from "@material-ui/core/Button";
+import List from "@material-ui/core/List";
+import Divider from "@material-ui/core/Divider";
+import ListItem from "@material-ui/core/ListItem";
+import ListItemIcon from "@material-ui/core/ListItemIcon";
+import ListItemText from "@material-ui/core/ListItemText";
+import InboxIcon from "@material-ui/icons/MoveToInbox";
 
 const useStyles = makeStyles(theme => ({
+  list: {
+    width: 250
+  },
+  fullList: {
+    width: "auto"
+  },
   grow: {
     flexGrow: 1
   },
@@ -81,6 +95,42 @@ const Header = props => {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
+  const [state, setState] = React.useState({
+    top: false,
+    left: false,
+    bottom: false,
+    right: false
+  });
+
+  const toggleDrawer = (side, open) => event => {
+    if (
+      event &&
+      event.type === "keydown" &&
+      (event.key === "Tab" || event.key === "Shift")
+    ) {
+      return;
+    }
+    setState({ ...state, [side]: open });
+  };
+
+  const sideList = side => (
+    <div
+      className={classes.list}
+      role="presentation"
+      onClick={toggleDrawer(side, false)}
+      onKeyDown={toggleDrawer(side, false)}
+    >
+      <List>
+        {["Home", "Categories", "Sign Up", "Profile", "About Us"].map(
+          (text, index) => (
+            <ListItem button key={text}>
+              <ListItemText primary={text} />
+            </ListItem>
+          )
+        )}
+      </List>
+    </div>
+  );
 
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
@@ -162,17 +212,25 @@ const Header = props => {
   return (
     <div className={classes.grow}>
       <AppBar position="static">
+        <SwipeableDrawer
+          open={state.left}
+          onClose={toggleDrawer("left", false)}
+          onOpen={toggleDrawer("left", true)}
+        >
+          {sideList("left")}
+        </SwipeableDrawer>
         <Toolbar>
           <IconButton
             edge="start"
             className={classes.menuButton}
             color="inherit"
             aria-label="Open drawer"
+            onClick={toggleDrawer("left", true)}
           >
             <MenuIcon />
           </IconButton>
           <Typography className={classes.title} variant="h6" noWrap>
-            Print Stuffs
+            3D PI
           </Typography>
           <div className={classes.search}>
             <div className={classes.searchIcon}>
@@ -189,16 +247,6 @@ const Header = props => {
           </div>
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
-            <IconButton aria-label="Show 4 new mails" color="inherit">
-              <Badge badgeContent={4} color="secondary">
-                <Typography />
-              </Badge>
-            </IconButton>
-            <IconButton aria-label="Show 17 new notifications" color="inherit">
-              <Badge badgeContent={17} color="secondary">
-                <NotificationsIcon />
-              </Badge>
-            </IconButton>
             <IconButton
               edge="end"
               aria-label="Account of current user"
