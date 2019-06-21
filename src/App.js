@@ -5,6 +5,7 @@ import CategoriesPage from "./components/CategoriesPage/CategoriesPage";
 import { Router } from "@reach/router";
 import AboutPage from "./components/AboutPage/AboutPage";
 import HomePage from "./components/HomePage/HomePage";
+import SignUp from "./components/SignUp/SignUp";
 
 export default class App extends Component {
   state = {
@@ -24,6 +25,7 @@ export default class App extends Component {
           <HomePage path="/" />
           <CategoriesPage path="/categories" />
           <AboutPage path="/about_us" />
+          <SignUp path="/sign_up" loginUser={this.loginUser} />
         </Router>
       </div>
     );
