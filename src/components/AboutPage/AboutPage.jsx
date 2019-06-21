@@ -5,10 +5,15 @@ import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
+import { Link } from "@reach/router";
 
 const useStyles = makeStyles({
   card: {
-    minWidth: 275
+    minWidth: 275,
+    width: "80%",
+    marginLeft: "auto",
+    marginRight: "auto",
+    marginTop: "20px"
   },
   title: {
     fontSize: 14
@@ -37,13 +42,28 @@ export default function SimpleCard() {
           <br />
           The Team:
           <br />
-          Charles Battrick, Fraser Kemp, Elizabeth Kerrigan, Nick Etherington,
-          Shiva Heydaribeni
+          <a href="https://github.com/cpbattrick">Charles</a>
+          <br />
+          <a href="https://github.com/NEJEtherington">Nick</a>
+          <br />
+          <a href="https://github.com/lizzykerrigan">Elizabeth</a>
+          <br />
+          <a href="https://github.com/FraserKemp">Fraser</a>
+          <br />
+          <a href="https://github.com/SH-H-B">Shiva</a>
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small">Learn More</Button>
+        <a
+          href="https://github.com/lizzykerrigan/fencs-front-end"
+          target="_blank"
+        >
+          <Button>Git</Button>
+        </a>
       </CardActions>
     </Card>
   );
 }
+
+// Battrick, Fraser Kemp, Elizabeth Kerrigan, Nick Etherington,
+//   Shiva Heydaribeni
