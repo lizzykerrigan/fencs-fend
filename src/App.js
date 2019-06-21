@@ -8,11 +8,12 @@ import HomePage from "./components/HomePage/HomePage";
 
 export default class App extends Component {
   state = {
-    loggedInUser: null
+    loggedInUser: localStorage.getItem("loggedInUser") || null
   };
 
   loginUser = username => {
     this.setState({ loggedInUser: username });
+    localStorage.setItem("loggedInUser", username);
   };
 
   render() {
