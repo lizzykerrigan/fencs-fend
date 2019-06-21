@@ -1,5 +1,8 @@
 import React from "react";
 import { TextField } from "@material-ui/core";
+import Button from "@material-ui/core/Button";
+import Typography from "@material-ui/core/Typography";
+import FormGroup from "@material-ui/core/FormGroup";
 
 class LoginBox extends React.Component {
   state = {
@@ -14,7 +17,7 @@ class LoginBox extends React.Component {
     const { classes } = this.props;
     return (
       <form onSubmit={this.handleSubmit}>
-        <FormGroup className={classes.form}>
+        <FormGroup>
           <div>
             <TextField
               id="login"

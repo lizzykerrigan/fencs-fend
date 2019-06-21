@@ -19,6 +19,7 @@ import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import { Link } from "@reach/router";
+import LoginBox from "../Login/LoginBox";
 
 const AdapterLink = React.forwardRef((props, ref) => (
   <Link innerRef={ref} {...props} />
@@ -263,6 +264,7 @@ const Header = props => {
           </div>
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
+            <LoginBox />
             <IconButton
               edge="end"
               aria-label="Account of current user"
@@ -274,6 +276,7 @@ const Header = props => {
               <AccountCircle />
             </IconButton>
           </div>
+
           <div className={classes.sectionMobile}>
             <IconButton
               aria-label="Show more"
