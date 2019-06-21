@@ -7,10 +7,18 @@ import AboutPage from "./components/AboutPage/AboutPage";
 import HomePage from "./components/HomePage/HomePage";
 
 export default class App extends Component {
+  state = {
+    loggedInUser: null
+  };
+
+  loginUser = username => {
+    this.setState({ loggedInUser: username });
+  };
+
   render() {
     return (
       <div>
-        <Header client={this.props.client} />
+        <Header client={this.props.client} loginUser={this.loginUser} />
         <Router>
           <HomePage path="/" />
           <CategoriesPage path="/categories" />

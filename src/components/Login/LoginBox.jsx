@@ -5,7 +5,6 @@ import Typography from "@material-ui/core/Typography";
 import FormGroup from "@material-ui/core/FormGroup";
 import { withStyles } from "@material-ui/styles";
 import { gql } from "apollo-boost";
-import { promised } from "q";
 
 const styles = theme => ({
   form: {
@@ -44,7 +43,7 @@ class LoginBox extends React.Component {
         query: gql`
           {
             users(where:{username:{_eq:"${userInput}"}}){
-              fullname
+              username
             }
             
           }
@@ -53,9 +52,12 @@ class LoginBox extends React.Component {
       .then(user => {
         if (user.data.users.length === 0) {
           return Promise.reject({ err: "User not found" });
+        } else {
+          console.log(user.data.users[0].username);
+          this.props.loginUser(user.data.users[0].username);
+          this.setState({ err: null });
         }
       })
-
       .catch(err => {
         this.setState({ err });
       });

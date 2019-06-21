@@ -123,8 +123,6 @@ const Header = props => {
       onKeyDown={toggleDrawer(side, false)}
     >
       <List>
-        {/* {["Home", "Categories", "Sign Up", "Profile", "About Us"].map(
-          (text, index) => ( */}
         <ListItem button component={AdapterLink} to="/" key="home">
           <ListItemText primary="Home" />
         </ListItem>
@@ -264,7 +262,7 @@ const Header = props => {
           </div>
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
-            <LoginBox client={props.client} />
+            <LoginBox client={props.client} loginUser={props.loginUser} />
             <IconButton
               edge="end"
               aria-label="Account of current user"
