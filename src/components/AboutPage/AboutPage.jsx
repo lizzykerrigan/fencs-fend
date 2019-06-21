@@ -6,6 +6,7 @@ import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import { Link } from "@reach/router";
+import Divider from "@material-ui/core/Divider";
 
 const useStyles = makeStyles({
   card: {
@@ -13,10 +14,11 @@ const useStyles = makeStyles({
     width: "80%",
     marginLeft: "auto",
     marginRight: "auto",
-    marginTop: "20px"
+    marginTop: "30px"
   },
   title: {
-    fontSize: 14
+    fontSize: 30,
+    textAlign: "center"
   },
   pos: {
     marginBottom: 12
@@ -29,16 +31,21 @@ export default function SimpleCard() {
   return (
     <Card className={classes.card}>
       <CardContent>
-        <Typography variant="h5" component="h2">
+        <Typography className={classes.title} variant="h5" component="h2">
           About us
         </Typography>
+        <br />
+        <Divider variant="middle" />
+        <br />
         <Typography className={classes.poss} color="textSecondary">
           3D PI
         </Typography>
+        <br />
         <Typography variant="body2" component="p">
           This is a 3D Print market place where you can find superb, majestic,
           incredible designs to print at home or with one of our suggested
           vendours.
+          <br />
           <br />
           The Team:
           <br />
