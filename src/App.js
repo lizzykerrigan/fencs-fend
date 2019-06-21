@@ -10,7 +10,7 @@ export default class App extends Component {
   render() {
     return (
       <div>
-        <Header />
+        <Header client={this.props.client} />
         <Router>
           <HomePage path="/" />
           <CategoriesPage path="/categories" />

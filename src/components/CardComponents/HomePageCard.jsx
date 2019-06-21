@@ -10,7 +10,7 @@ import Typography from "@material-ui/core/Typography";
 
 const useStyles = makeStyles({
   card: {
-    width: 545,
+    width: 545
   },
   media: {
     height: 540
@@ -19,7 +19,7 @@ const useStyles = makeStyles({
 
 export default function HomePageCard(props) {
   const classes = useStyles();
-  console.log(props.image)
+
   return (
     <Card className={classes.card}>
       <CardActionArea>
@@ -29,7 +29,12 @@ export default function HomePageCard(props) {
           title={props.image.display_name}
         />
         <CardContent>
-          <Typography gutterBottom variant="h5" component="h2" style={{ textTransform: 'capitalize' }}>
+          <Typography
+            gutterBottom
+            variant="h5"
+            component="h2"
+            style={{ textTransform: "capitalize" }}
+          >
             {props.image.title}
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">

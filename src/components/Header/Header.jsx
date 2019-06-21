@@ -264,7 +264,7 @@ const Header = props => {
           </div>
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
-            <LoginBox />
+            <LoginBox client={props.client} />
             <IconButton
               edge="end"
               aria-label="Account of current user"

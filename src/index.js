@@ -27,7 +27,7 @@ const theme = createMuiTheme({
 ReactDOM.render(
   <MuiThemeProvider theme={theme}>
     <ApolloProvider client={client}>
-      <App />
+      <App client={client} />
     </ApolloProvider>
   </MuiThemeProvider>,
   document.getElementById("root")
