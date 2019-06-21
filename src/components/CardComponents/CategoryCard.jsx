@@ -10,7 +10,7 @@ import Typography from "@material-ui/core/Typography";
 
 const useStyles = makeStyles({
   card: {
-    maxWidth: 345
+    width: 345,
   },
   media: {
     height: 140
@@ -29,11 +29,11 @@ export default function CategoryCard(props) {
           title="Contemplative Reptile"
         />
         <CardContent>
-          <Typography gutterBottom variant="h5" component="h2">
-            Animals
+          <Typography gutterBottom variant="h5" component="h2" style={{ textTransform: 'capitalize' }}>
+            {props.category.slug}
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
-            Dogs and Cats and many many more
+            {props.category.description}
           </Typography>
         </CardContent>
       </CardActionArea>
