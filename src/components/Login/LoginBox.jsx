@@ -74,8 +74,9 @@ class LoginBox extends React.Component {
           <FormGroup className={classes.form}>
             <div>
               <TextField
+                error={!!this.state.err}
                 id="login"
-                label={this.state.err ? "Invalid user !" : "Username"}
+                label={this.state.err ? "Invalid User !" : "Input Username"}
                 onChange={this.storeUserInput}
                 helperText="fraserkemp"
                 variant="outlined"
