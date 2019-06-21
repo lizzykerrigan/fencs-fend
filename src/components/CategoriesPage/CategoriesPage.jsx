@@ -1,5 +1,5 @@
 import React from "react";
-import { makeStyles, withStyles } from "@material-ui/core/styles";
+import { withStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import CategoryCard from "../CardComponents/CategoryCard";
 import { Query } from "react-apollo";
@@ -43,11 +43,6 @@ class CategoriesPage extends React.Component {
                 ));
               }}
             </Query>
-            {/* {[0, 1, 2, 3, 4, 5, 6, 7, 8].map(value => (
-              <Grid key={value} item>
-                <CategoryCard />
-              </Grid>
-            ))} */}
           </Grid>
         </Grid>
       </Grid>

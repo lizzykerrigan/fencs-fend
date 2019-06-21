@@ -15,7 +15,7 @@ const styles = theme => ({
 class HomePage extends React.Component {
   //const [spacing] = React.useState(3);
 
-  componentDidMount() { }
+  componentDidMount() {}
 
   render() {
     const { classes } = this.props;
@@ -39,16 +39,9 @@ class HomePage extends React.Component {
                 if (loading) return <p>Loading...</p>;
                 if (error) return <p>Error :(</p>;
 
-                return data.images.map(image => (
-                  <HomePageCard image={image} />
-                ));
+                return data.images.map(image => <HomePageCard image={image} />);
               }}
             </Query>
-            {/* {[0, 1, 2, 3, 4, 5, 6, 7, 8].map(value => (
-              <Grid key={value} item>
-                <CategoryCard />
-              </Grid>
-            ))} */}
           </Grid>
         </Grid>
       </Grid>
