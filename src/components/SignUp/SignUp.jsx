@@ -119,15 +119,7 @@ function SignUp() {
                 id="location"
               />
             </Grid>
-            <Grid item xs={12}>
-              <TextField
-                variant="outlined"
-                fullWidth
-                name="profilePic"
-                label="Profile Picture"
-                id="profilePic"
-              />
-            </Grid>
+
             <Grid item xs={12}>
               <FormControlLabel
                 control={<Checkbox value={true} color="primary" />}
@@ -137,7 +129,7 @@ function SignUp() {
             <Grid item xs={12}>
               <FormControlLabel
                 control={<Checkbox value={true} color="primary" />}
-                label="I am a 3D designer and want to sell images."
+                label="I am a 3D designer and want to sell images"
               />
             </Grid>
           </Grid>
