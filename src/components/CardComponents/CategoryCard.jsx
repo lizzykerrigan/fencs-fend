@@ -9,8 +9,11 @@ import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 
 const useStyles = makeStyles({
+  header: {
+    textTransform: "capitalize"
+  },
   card: {
-    width: 345,
+    width: 345
   },
   media: {
     height: 140
@@ -29,7 +32,12 @@ export default function CategoryCard(props) {
           title="Contemplative Reptile"
         />
         <CardContent>
-          <Typography gutterBottom variant="h5" component="h2" style={{ textTransform: 'capitalize' }}>
+          <Typography
+            gutterBottom
+            variant="h5"
+            component="h2"
+            className={classes.header}
+          >
             {props.category.slug}
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
