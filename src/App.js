@@ -20,7 +20,11 @@ export default class App extends Component {
   render() {
     return (
       <div>
-        <Header client={this.props.client} loginUser={this.loginUser} />
+        <Header
+          client={this.props.client}
+          loginUser={this.loginUser}
+          loggedInUser={this.state.loggedInUser}
+        />
         <Router>
           <HomePage path="/" />
           <CategoriesPage path="/categories" />
