@@ -4,6 +4,7 @@ import { gql } from "apollo-boost";
 import { Link } from "@reach/router";
 import { Card, CardContent, Button, Grid, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
+import format from "date-fns/format";
 
 const AdapterLink = React.forwardRef((props, ref) => (
   <Link innerRef={ref} {...props} />
@@ -11,6 +12,7 @@ const AdapterLink = React.forwardRef((props, ref) => (
 
 const useStyles = makeStyles(theme => ({
   profilePic: { height: 200 },
+  fullname: { textTransform: "capitalize" },
   picContainer: { width: 205, padding: 20 },
   card: {
     width: "90%",
@@ -49,24 +51,38 @@ const Profile = props => {
             const user = data.users[0];
             return (
               <Card className={classes.card}>
-                <CardContent>
-                  <Card className={classes.picContainer}>
-                    <img
-                      src={user.avatar}
-                      alt="Profile"
-                      className={classes.profilePic}
-                    />
-                  </Card>
-                </CardContent>
-                <CardContent>
-                  <Grid>
-                    <Typography variant="h5">{user.fullname}</Typography>
-                    <Typography> {user.date_joined}</Typography>
-                    <Typography> {user.email_address}</Typography>
-                    <Typography> {user.rating}</Typography>
-                    <Typography> {user.username}</Typography>
+                <Grid container>
+                  <Grid item xs={3}>
+                    <CardContent>
+                      <Card className={classes.picContainer}>
+                        <img
+                          src={user.avatar}
+                          alt="Profile"
+                          className={classes.profilePic}
+                        />
+                      </Card>
+                    </CardContent>
                   </Grid>
-                </CardContent>
+                  <Grid item xs={9}>
+                    <CardContent>
+                      <Grid>
+                        <Typography className={classes.fullname} variant="h5">
+                          {user.fullname}
+                        </Typography>
+                        <Typography>
+                          {" "}
+                          {`Created on: ${format(
+                            user.date_joined,
+                            "Do MMMM YYYY"
+                          )}`}
+                        </Typography>
+                        <Typography> {user.email_address}</Typography>
+                        <Typography> {user.rating}</Typography>
+                        <Typography> {user.username}</Typography>
+                      </Grid>
+                    </CardContent>
+                  </Grid>
+                </Grid>
               </Card>
             );
           }}
