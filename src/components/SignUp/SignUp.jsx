@@ -11,6 +11,7 @@ import Box from "@material-ui/core/Box";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
+import { withStyles } from "@material-ui/styles";
 import Container from "@material-ui/core/Container";
 
 function MadeWithLove() {
@@ -50,34 +51,38 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-function SignUp() {
-  const classes = useStyles();
+class SignUp extends React.Component {
+  // const classes = useStyles();
+  state = {};
 
-  return (
-    <Container component="main" maxWidth="xs">
-      <CssBaseline />
-      <div className={classes.paper}>
-        <Avatar className={classes.avatar}>
-          <LockOutlinedIcon />
-        </Avatar>
-        <Typography component="h1" variant="h5">
-          Sign up
-        </Typography>
-        <form className={classes.form} noValidate>
-          <Grid container spacing={2}>
-            <Grid item xs={12}>
-              <TextField
-                autoComplete="fname"
-                name="fullname"
-                variant="outlined"
-                required
-                fullWidth
-                id="fullname"
-                label="Full Name"
-                autoFocus
-              />
-            </Grid>
-            {/* <Grid item xs={12} sm={6}>
+  render() {
+    const { classes } = this.props;
+    console.log(classes);
+    return (
+      <Container component="main" maxWidth="xs">
+        <CssBaseline />
+        <div className={classes.paper}>
+          <Avatar className={classes.avatar}>
+            <LockOutlinedIcon />
+          </Avatar>
+          <Typography component="h1" variant="h5">
+            Sign up
+          </Typography>
+          <form className={classes.form} noValidate>
+            <Grid container spacing={2}>
+              <Grid item xs={12}>
+                <TextField
+                  autoComplete="fname"
+                  name="fullname"
+                  variant="outlined"
+                  required
+                  fullWidth
+                  id="fullname"
+                  label="Full Name"
+                  autoFocus
+                />
+              </Grid>
+              {/* <Grid item xs={12} sm={6}>
               <TextField
                 variant="outlined"
                 required
@@ -88,64 +93,65 @@ function SignUp() {
                 autoComplete="lname"
               />
             </Grid> */}
-            <Grid item xs={12}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                id="email"
-                label="Email Address"
-                name="email"
-                autoComplete="email"
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                name="username"
-                label="Username"
-                id="username"
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                name="location"
-                label="Location"
-                id="location"
-              />
-            </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  variant="outlined"
+                  required
+                  fullWidth
+                  id="email"
+                  label="Email Address"
+                  name="email"
+                  autoComplete="email"
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  variant="outlined"
+                  required
+                  fullWidth
+                  name="username"
+                  label="Username"
+                  id="username"
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  variant="outlined"
+                  required
+                  fullWidth
+                  name="location"
+                  label="Location"
+                  id="location"
+                />
+              </Grid>
 
-            <Grid item xs={12}>
-              <FormControlLabel
-                control={<Checkbox value={true} color="primary" />}
-                label="I have a 3D printer and want to provide printing services to others."
-              />
+              <Grid item xs={12}>
+                <FormControlLabel
+                  control={<Checkbox value={true} color="primary" />}
+                  label="I have a 3D printer and want to provide printing services to others."
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <FormControlLabel
+                  control={<Checkbox value={true} color="primary" />}
+                  label="I am a 3D designer and want to sell images"
+                />
+              </Grid>
             </Grid>
-            <Grid item xs={12}>
-              <FormControlLabel
-                control={<Checkbox value={true} color="primary" />}
-                label="I am a 3D designer and want to sell images"
-              />
-            </Grid>
-          </Grid>
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            color="primary"
-            className={classes.submit}
-          >
-            Sign Up
-          </Button>
-        </form>
-      </div>
-    </Container>
-  );
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              color="primary"
+              className={classes.submit}
+            >
+              Sign Up
+            </Button>
+          </form>
+        </div>
+      </Container>
+    );
+  }
 }
 
-export default SignUp;
+export default withStyles(useStyles)(SignUp);
