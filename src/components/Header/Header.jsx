@@ -279,11 +279,13 @@ const Header = props => {
                   <Typography>Logout</Typography>
                 </Button>
                 <IconButton
+                  component={AdapterLink}
+                  to={`/${props.loggedInUser}`}
                   edge="end"
                   aria-label="Account of current user"
-                  aria-controls={menuId}
-                  aria-haspopup="true"
-                  onClick={handleProfileMenuOpen}
+                  // aria-controls={menuId}
+                  // aria-haspopup="true"
+                  // onClick={handleProfileMenuOpen}
                   color="inherit"
                   className={classes.profileButton}
                 >

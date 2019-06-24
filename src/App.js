@@ -6,6 +6,7 @@ import { Router } from "@reach/router";
 import AboutPage from "./components/AboutPage/AboutPage";
 import HomePage from "./components/HomePage/HomePage";
 import SignUp from "./components/SignUp/SignUp";
+import Profile from "./components/Profile/Profile";
 
 export default class App extends Component {
   state = {
@@ -30,6 +31,7 @@ export default class App extends Component {
           <CategoriesPage path="/categories" />
           <AboutPage path="/about_us" />
           <SignUp path="/sign_up" loginUser={this.loginUser} />
+          <Profile path="/:username" loggedInUser={this.state.loggedInUser} />
         </Router>
       </div>
     );
