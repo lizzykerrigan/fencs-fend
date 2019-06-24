@@ -13,6 +13,7 @@ import {
 import { makeStyles } from "@material-ui/core/styles";
 import format from "date-fns/format";
 import Rating from "react-rating";
+import HomePageCard from "../CardComponents/HomePageCard";
 
 const AdapterLink = React.forwardRef((props, ref) => (
   <Link innerRef={ref} {...props} />
@@ -25,7 +26,15 @@ const useStyles = makeStyles(theme => ({
   card: {
     width: "90%",
     marginLeft: "5%",
-    marginTop: "20px"
+    marginTop: "20px",
+    marginBottom: "30px"
+  },
+  imagesCard: {
+    width: "90%",
+    marginLeft: "5%",
+    marginTop: "20px",
+    marginBottom: "30px",
+    padding: 20
   }
 }));
 
@@ -59,7 +68,7 @@ const Profile = props => {
             return (
               <Card className={classes.card}>
                 <Grid container spacing={3}>
-                  <Grid item md={3} sm={12}>
+                  <Grid item md={3} sm={9}>
                     <CardContent>
                       <Card className={classes.picContainer}>
                         <img
@@ -71,7 +80,7 @@ const Profile = props => {
                       </Card>
                     </CardContent>
                   </Grid>
-                  <Grid className={classes.details} item md={12} sm={11}>
+                  <Grid className={classes.details} item md={9} sm={11}>
                     <CardContent>
                       <Grid>
                         <Typography className={classes.username} variant="h5">
@@ -98,6 +107,35 @@ const Profile = props => {
                     </CardContent>
                   </Grid>
                 </Grid>
+                <Card className={classes.imagesCard}>
+                  <CardContent>
+                    <Typography variant="h4" className={classes.username}>{`${
+                      user.username
+                    }'s Designs`}</Typography>
+                    <br />
+                    <Query
+                      query={gql`
+                      {
+                        images(where: {posted_by: {_eq: "${user.username}"}}) {
+                            title
+                    display_name
+                    thumbnail_url
+                    likes
+                        }
+                      }
+                      `}
+                    >
+                      {({ loading, error, data }) => {
+                        if (loading) return <p>Loading...</p>;
+                        if (error) return <p>Error :(</p>;
+
+                        return data.images.map(image => (
+                          <HomePageCard image={image} />
+                        ));
+                      }}
+                    </Query>
+                  </CardContent>
+                </Card>
               </Card>
             );
           }}
