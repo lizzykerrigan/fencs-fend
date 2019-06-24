@@ -2,7 +2,14 @@ import React from "react";
 import { Query } from "react-apollo";
 import { gql } from "apollo-boost";
 import { Link } from "@reach/router";
-import { Card, CardContent, Button, Grid, Typography } from "@material-ui/core";
+import {
+  Card,
+  CardContent,
+  Button,
+  Grid,
+  Typography,
+  Divider
+} from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import format from "date-fns/format";
 import Rating from "react-rating";
@@ -13,7 +20,7 @@ const AdapterLink = React.forwardRef((props, ref) => (
 
 const useStyles = makeStyles(theme => ({
   profilePic: { height: 200 },
-  fullname: { textTransform: "capitalize" },
+  username: { textTransform: "capitalize" },
   picContainer: { width: 205, padding: 20 },
   card: {
     width: "90%",
@@ -51,8 +58,8 @@ const Profile = props => {
             const user = data.users[0];
             return (
               <Card className={classes.card}>
-                <Grid container>
-                  <Grid item xs={3}>
+                <Grid container spacing={3}>
+                  <Grid item md={3} sm={12}>
                     <CardContent>
                       <Card className={classes.picContainer}>
                         <img
@@ -64,12 +71,15 @@ const Profile = props => {
                       </Card>
                     </CardContent>
                   </Grid>
-                  <Grid item xs={9}>
+                  <Grid className={classes.details} item md={12} sm={11}>
                     <CardContent>
                       <Grid>
-                        <Typography className={classes.fullname} variant="h5">
-                          {user.fullname}
+                        <Typography className={classes.username} variant="h5">
+                          {user.username}
                         </Typography>
+                        <br />
+                        <Divider variant="middle" />
+                        <br />
                         <Typography>
                           {" "}
                           {`Created on: ${format(
@@ -77,8 +87,13 @@ const Profile = props => {
                             "Do MMMM YYYY"
                           )}`}
                         </Typography>
-                        <Typography> {user.email_address}</Typography>
-                        <Typography> {user.username}</Typography>
+                        <br />
+                        <Typography>
+                          {" "}
+                          {`Email: ${user.email_address}`}
+                        </Typography>
+                        <br />
+                        <Typography> {`Fullname: ${user.fullname}`}</Typography>
                       </Grid>
                     </CardContent>
                   </Grid>
