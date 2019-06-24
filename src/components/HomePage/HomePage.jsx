@@ -27,6 +27,7 @@ class HomePage extends React.Component {
               query={gql`
                 {
                   images {
+                    image_id
                     title
                     display_name
                     thumbnail_url

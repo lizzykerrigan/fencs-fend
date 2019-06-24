@@ -7,6 +7,7 @@ import AboutPage from "./components/AboutPage/AboutPage";
 import ModelCard from "./components/3dModel/3dModelCard";
 import HomePage from "./components/HomePage/HomePage";
 import SignUp from "./components/SignUp/SignUp";
+import SingleImagePage from "./components/imagePage/SingleImagePage";
 
 export default class App extends Component {
   state = {
@@ -37,6 +38,7 @@ export default class App extends Component {
         <Router>
           <HomePage path="/" />
           <CategoriesPage path="/categories" />
+          <SingleImagePage path="/images/:image_id" />
           <AboutPage path="/about_us" />
           <SignUp path="/sign_up" loginUser={this.loginUser} />
         </Router>
