@@ -27,8 +27,7 @@ export default class App extends Component {
   render() {
     return (
       <div>
-        <Header />
-        <ModelCard />
+        {/* <ModelCard /> */}
         <Header
           client={this.props.client}
           loginUser={this.loginUser}
