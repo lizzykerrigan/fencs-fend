@@ -13,23 +13,23 @@ const useStyles = makeStyles({
     textTransform: "capitalize"
   },
   card: {
-    width: 345
+    width: 545
   },
   media: {
-    height: 140
+    height: 540
   }
 });
 
-export default function CategoryCard(props) {
+export default function HomePageCard(props) {
   const classes = useStyles();
-  console.log(props.category.img_url);
+
   return (
     <Card className={classes.card}>
       <CardActionArea>
         <CardMedia
           className={classes.media}
-          image={props.category.img_url}
-          title="Contemplative Reptile"
+          image={props.image.thumbnail_url}
+          title={props.image.display_name}
         />
         <CardContent>
           <Typography
@@ -38,16 +38,16 @@ export default function CategoryCard(props) {
             component="h2"
             className={classes.header}
           >
-            {props.category.slug}
+            {props.image.title}
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
-            {props.category.description}
+            {props.image.likes} likes
           </Typography>
         </CardContent>
       </CardActionArea>
       <CardActions>
         <Button size="small" color="primary">
-          View Images
+          View Image
         </Button>
       </CardActions>
     </Card>

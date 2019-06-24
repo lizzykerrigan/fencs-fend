@@ -19,6 +19,9 @@ import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import { Link } from "@reach/router";
+import LoginBox from "../Login/LoginBox";
+import Button from "@material-ui/core/Button";
+import Grid from "@material-ui/core/Grid";
 
 const AdapterLink = React.forwardRef((props, ref) => (
   <Link innerRef={ref} {...props} />
@@ -122,8 +125,6 @@ const Header = props => {
       onKeyDown={toggleDrawer(side, false)}
     >
       <List>
-        {/* {["Home", "Categories", "Sign Up", "Profile", "About Us"].map(
-          (text, index) => ( */}
         <ListItem button component={AdapterLink} to="/" key="home">
           <ListItemText primary="Home" />
         </ListItem>
@@ -263,17 +264,35 @@ const Header = props => {
           </div>
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
-            <IconButton
-              edge="end"
-              aria-label="Account of current user"
-              aria-controls={menuId}
-              aria-haspopup="true"
-              onClick={handleProfileMenuOpen}
-              color="inherit"
-            >
-              <AccountCircle />
-            </IconButton>
+            {!props.loggedInUser && (
+              <LoginBox client={props.client} loginUser={props.loginUser} />
+            )}
+            {props.loggedInUser && (
+              <Grid
+                container
+                direction="row"
+                justify="center"
+                alignItems="stretch"
+              >
+                <Typography>{`Logged in as: ${props.loggedInUser}`}</Typography>
+                <Button onClick={props.logoutUser}>
+                  <Typography>Logout</Typography>
+                </Button>
+                <IconButton
+                  edge="end"
+                  aria-label="Account of current user"
+                  aria-controls={menuId}
+                  aria-haspopup="true"
+                  onClick={handleProfileMenuOpen}
+                  color="inherit"
+                  className={classes.profileButton}
+                >
+                  <AccountCircle />
+                </IconButton>
+              </Grid>
+            )}
           </div>
+
           <div className={classes.sectionMobile}>
             <IconButton
               aria-label="Show more"

@@ -5,13 +5,20 @@ import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
+import { Link } from "@reach/router";
+import Divider from "@material-ui/core/Divider";
 
 const useStyles = makeStyles({
   card: {
-    minWidth: 275
+    minWidth: 275,
+    width: "80%",
+    marginLeft: "auto",
+    marginRight: "auto",
+    marginTop: "30px"
   },
   title: {
-    fontSize: 14
+    fontSize: 30,
+    textAlign: "center"
   },
   pos: {
     marginBottom: 12
@@ -24,26 +31,46 @@ export default function SimpleCard() {
   return (
     <Card className={classes.card}>
       <CardContent>
-        <Typography variant="h5" component="h2">
+        <Typography className={classes.title} variant="h5" component="h2">
           About us
         </Typography>
+        <br />
+        <Divider variant="middle" />
+        <br />
         <Typography className={classes.poss} color="textSecondary">
           3D PI
         </Typography>
+        <br />
         <Typography variant="body2" component="p">
           This is a 3D Print market place where you can find superb, majestic,
           incredible designs to print at home or with one of our suggested
           vendours.
           <br />
+          <br />
           The Team:
           <br />
-          Charles Battrick, Fraser Kemp, Elizabeth Kerrigan, Nick Etherington,
-          Shiva Heydaribeni
+          <a href="https://github.com/cpbattrick">Charles</a>
+          <br />
+          <a href="https://github.com/NEJEtherington">Nick</a>
+          <br />
+          <a href="https://github.com/lizzykerrigan">Elizabeth</a>
+          <br />
+          <a href="https://github.com/FraserKemp">Fraser</a>
+          <br />
+          <a href="https://github.com/SH-H-B">Shiva</a>
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small">Learn More</Button>
+        <a
+          href="https://github.com/lizzykerrigan/fencs-front-end"
+          target="_blank"
+        >
+          <Button>Git</Button>
+        </a>
       </CardActions>
     </Card>
   );
 }
+
+// Battrick, Fraser Kemp, Elizabeth Kerrigan, Nick Etherington,
+//   Shiva Heydaribeni

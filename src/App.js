@@ -5,16 +5,41 @@ import CategoriesPage from "./components/CategoriesPage/CategoriesPage";
 import { Router } from "@reach/router";
 import AboutPage from "./components/AboutPage/AboutPage";
 import ModelCard from "./components/3dModel/3dModelCard";
+import HomePage from "./components/HomePage/HomePage";
+import SignUp from "./components/SignUp/SignUp";
 
 export default class App extends Component {
+  state = {
+    loggedInUser: localStorage.getItem("loggedInUser") || null
+  };
+
+  loginUser = username => {
+    this.setState({ loggedInUser: username });
+    localStorage.setItem("loggedInUser", username);
+  };
+
+  logoutUser = e => {
+    e.preventDefault();
+    this.setState({ loggedInUser: null });
+    localStorage.removeItem("loggedInUser");
+  };
+
   render() {
     return (
       <div>
         <Header />
         <ModelCard />
+        <Header
+          client={this.props.client}
+          loginUser={this.loginUser}
+          loggedInUser={this.state.loggedInUser}
+          logoutUser={this.logoutUser}
+        />
         <Router>
+          <HomePage path="/" />
           <CategoriesPage path="/categories" />
           <AboutPage path="/about_us" />
+          <SignUp path="/sign_up" loginUser={this.loginUser} />
         </Router>
       </div>
     );

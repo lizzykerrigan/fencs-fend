@@ -1,7 +1,7 @@
 import React from "react";
-import { withStyles } from "@material-ui/core/styles";
+import { makeStyles, withStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
-import CategoryCard from "../CardComponents/CategoryCard";
+import HomePageCard from "../CardComponents/HomePageCard";
 import { Query } from "react-apollo";
 import { gql } from "apollo-boost";
 
@@ -12,7 +12,7 @@ const styles = theme => ({
   }
 });
 
-class CategoriesPage extends React.Component {
+class HomePage extends React.Component {
   //const [spacing] = React.useState(3);
 
   componentDidMount() {}
@@ -26,10 +26,11 @@ class CategoriesPage extends React.Component {
             <Query
               query={gql`
                 {
-                  categories {
-                    slug
-                    description
-                    img_url
+                  images {
+                    title
+                    display_name
+                    thumbnail_url
+                    likes
                   }
                 }
               `}
@@ -38,9 +39,7 @@ class CategoriesPage extends React.Component {
                 if (loading) return <p>Loading...</p>;
                 if (error) return <p>Error :(</p>;
 
-                return data.categories.map(category => (
-                  <CategoryCard category={category} />
-                ));
+                return data.images.map(image => <HomePageCard image={image} />);
               }}
             </Query>
           </Grid>
@@ -50,4 +49,4 @@ class CategoriesPage extends React.Component {
   }
 }
 
-export default withStyles(styles)(CategoriesPage);
+export default withStyles(styles)(HomePage);
