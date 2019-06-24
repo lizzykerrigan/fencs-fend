@@ -13,18 +13,8 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import { withStyles } from "@material-ui/styles";
 import Container from "@material-ui/core/Container";
-
-function MadeWithLove() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {"Built with love by the "}
-      <Link color="inherit" href="https://material-ui.com/">
-        Material-UI
-      </Link>
-      {" team."}
-    </Typography>
-  );
-}
+import { gql } from "apollo-boost";
+import { Mutation } from "react-apollo";
 
 const useStyles = makeStyles(theme => ({
   "@global": {
@@ -51,105 +41,178 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
+const adduser = gql`
+  mutation SignUp(
+    $email_address: String!
+    $fullname: String!
+    $location: String!
+    $username: String!
+    $owns_printer: Boolean!
+    $designer_tag: Boolean!
+  ) {
+    insert_users(
+      email_address: $email_address
+      fullname: $fullname
+      location: $location
+      username: $username
+      owns_printer: $owns_printer
+      designer_tag: $designer_tag
+    ) {
+      returning {
+        avatar
+        date_joined
+        designer_tag
+        email_address
+        fullname
+        location
+        owns_printer
+        rating
+      }
+    }
+  }
+`;
+
 class SignUp extends React.Component {
-  // const classes = useStyles();
-  state = {};
+  state = {
+    userFullnameInput: "",
+    userEmailInput: "",
+    usernameInput: "",
+    loacationInput: "",
+    has3Dprinter: false,
+    is3Ddesigner: false
+  };
+
+  handleInputChange = event => {
+    const target = event.target;
+    const value = target.type === "checkbox" ? target.checked : target.value;
+    this.setState({ [target.name]: value });
+  };
+
+  //  handleSubmit = event => {};
 
   render() {
     const { classes } = this.props;
-    console.log(classes);
-    return (
-      <Container component="main" maxWidth="xs">
-        <CssBaseline />
-        <div className={classes.paper}>
-          <Avatar className={classes.avatar}>
-            <LockOutlinedIcon />
-          </Avatar>
-          <Typography component="h1" variant="h5">
-            Sign up
-          </Typography>
-          <form className={classes.form} noValidate>
-            <Grid container spacing={2}>
-              <Grid item xs={12}>
-                <TextField
-                  autoComplete="fname"
-                  name="fullname"
-                  variant="outlined"
-                  required
-                  fullWidth
-                  id="fullname"
-                  label="Full Name"
-                  autoFocus
-                />
-              </Grid>
-              {/* <Grid item xs={12} sm={6}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                id="lastName"
-                label="Last Name"
-                name="lastName"
-                autoComplete="lname"
-              />
-            </Grid> */}
-              <Grid item xs={12}>
-                <TextField
-                  variant="outlined"
-                  required
-                  fullWidth
-                  id="email"
-                  label="Email Address"
-                  name="email"
-                  autoComplete="email"
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  variant="outlined"
-                  required
-                  fullWidth
-                  name="username"
-                  label="Username"
-                  id="username"
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  variant="outlined"
-                  required
-                  fullWidth
-                  name="location"
-                  label="Location"
-                  id="location"
-                />
-              </Grid>
 
-              <Grid item xs={12}>
-                <FormControlLabel
-                  control={<Checkbox value={true} color="primary" />}
-                  label="I have a 3D printer and want to provide printing services to others."
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <FormControlLabel
-                  control={<Checkbox value={true} color="primary" />}
-                  label="I am a 3D designer and want to sell images"
-                />
-              </Grid>
-            </Grid>
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              color="primary"
-              className={classes.submit}
-            >
-              Sign Up
-            </Button>
-          </form>
-        </div>
-      </Container>
+    return (
+      <Mutation mutation={adduser}>
+        {(SignUp, { data }) => (
+          <Container component="main" maxWidth="xs">
+            <CssBaseline />
+            <div className={classes.paper}>
+              <Avatar className={classes.avatar}>
+                <LockOutlinedIcon />
+              </Avatar>
+              <Typography component="h1" variant="h5">
+                Sign up
+              </Typography>
+              <form
+                className={classes.form}
+                noValidate
+                onSubmit={e => {
+                  e.preventDefault();
+                  SignUp({
+                    variables: {
+                      email_address: this.state.userEmailInput,
+                      fullname: this.state.userFullnameInput,
+                      location: this.state.loacationInput,
+                      username: this.state.usernameInput,
+                      owns_printer: this.state.has3Dprinter,
+                      designer_tag: this.state.is3Ddesigner
+                    }
+                  });
+                }}
+              >
+                <Grid container spacing={2}>
+                  <Grid item xs={12}>
+                    <TextField
+                      autoComplete="fname"
+                      name="userFullnameInput"
+                      variant="outlined"
+                      required
+                      fullWidth
+                      id="fullname"
+                      label="Full Name"
+                      autoFocus
+                      onChange={this.handleInputChange}
+                    />
+                  </Grid>
+
+                  <Grid item xs={12}>
+                    <TextField
+                      variant="outlined"
+                      required
+                      fullWidth
+                      id="email"
+                      label="Email Address"
+                      name="userEmailInput"
+                      autoComplete="email"
+                      onChange={this.handleInputChange}
+                    />
+                  </Grid>
+                  <Grid item xs={12}>
+                    <TextField
+                      variant="outlined"
+                      required
+                      fullWidth
+                      name="usernameInput"
+                      label="Username"
+                      id="username"
+                      onChange={this.handleInputChange}
+                    />
+                  </Grid>
+                  <Grid item xs={12}>
+                    <TextField
+                      variant="outlined"
+                      required
+                      fullWidth
+                      name="loacationInput"
+                      label="Location"
+                      id="location"
+                      onChange={this.handleInputChange}
+                    />
+                  </Grid>
+
+                  <Grid item xs={12}>
+                    <FormControlLabel
+                      control={
+                        <Checkbox
+                          checked={this.state.has3Dprinter}
+                          color="primary"
+                          onChange={this.handleInputChange}
+                        />
+                      }
+                      label="I have a 3D printer and want to provide printing services to others."
+                      name="has3Dprinter"
+                    />
+                  </Grid>
+                  <Grid item xs={12}>
+                    <FormControlLabel
+                      control={
+                        <Checkbox
+                          checked={this.state.is3Ddesigner}
+                          color="primary"
+                          onChange={this.handleInputChange}
+                        />
+                      }
+                      label="I am a 3D designer and want to sell images"
+                      name="is3Ddesigner"
+                    />
+                  </Grid>
+                </Grid>
+                <Button
+                  type="submit"
+                  fullWidth
+                  variant="contained"
+                  color="primary"
+                  className={classes.submit}
+                >
+                  Sign Up
+                </Button>
+              </form>
+            </div>
+          </Container>
+        )}
+      </Mutation>
     );
   }
 }
