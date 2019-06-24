@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import ModelCard from "../3dModel/3dModelCard";
 import { Query } from "react-apollo";
 import { gql } from "apollo-boost";
 
@@ -6,7 +7,16 @@ export default class singleImagePage extends Component {
   state = { image_by_pk: null };
 
   render() {
-    return <div />;
+    const { image_by_pk } = this.state;
+    return (
+      <div>
+        {this.state.image_by_pk && (
+          <>
+            <ModelCard image={image_by_pk} />
+          </>
+        )}
+      </div>
+    );
   }
 
   componentDidMount = () => {
