@@ -5,9 +5,7 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
-import Link from "@material-ui/core/Link";
 import Grid from "@material-ui/core/Grid";
-import Box from "@material-ui/core/Box";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
@@ -15,6 +13,7 @@ import { withStyles } from "@material-ui/styles";
 import Container from "@material-ui/core/Container";
 import { gql } from "apollo-boost";
 import { Mutation } from "react-apollo";
+import { navigate } from "@reach/router";
 
 const useStyles = makeStyles(theme => ({
   "@global": {
@@ -42,31 +41,12 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const adduser = gql`
-  mutation SignUp(
-    $email_address: String!
-    $fullname: String!
-    $location: String!
-    $username: String!
-    $owns_printer: Boolean!
-    $designer_tag: Boolean!
-  ) {
-    insert_users(
-      email_address: $email_address
-      fullname: $fullname
-      location: $location
-      username: $username
-      owns_printer: $owns_printer
-      designer_tag: $designer_tag
-    ) {
+  mutation insert_users($newUser: [users_insert_input!]!) {
+    insert_users(objects: $newUser) {
       returning {
-        avatar
-        date_joined
-        designer_tag
         email_address
         fullname
         location
-        owns_printer
-        rating
       }
     }
   }
@@ -88,14 +68,12 @@ class SignUp extends React.Component {
     this.setState({ [target.name]: value });
   };
 
-  //  handleSubmit = event => {};
-
   render() {
     const { classes } = this.props;
 
     return (
       <Mutation mutation={adduser}>
-        {(SignUp, { data }) => (
+        {(insert_users, { loading, error, data }) => (
           <Container component="main" maxWidth="xs">
             <CssBaseline />
             <div className={classes.paper}>
@@ -110,15 +88,21 @@ class SignUp extends React.Component {
                 noValidate
                 onSubmit={e => {
                   e.preventDefault();
-                  SignUp({
+                  const newUser = {
+                    email_address: this.state.userEmailInput,
+                    fullname: this.state.userFullnameInput,
+                    location: this.state.loacationInput,
+                    username: this.state.usernameInput,
+                    owns_printer: this.state.has3Dprinter,
+                    designer_tag: this.state.is3Ddesigner
+                  };
+
+                  insert_users({
                     variables: {
-                      email_address: this.state.userEmailInput,
-                      fullname: this.state.userFullnameInput,
-                      location: this.state.loacationInput,
-                      username: this.state.usernameInput,
-                      owns_printer: this.state.has3Dprinter,
-                      designer_tag: this.state.is3Ddesigner
+                      newUser: newUser
                     }
+                  }).then(data => {
+                    navigate("/");
                   });
                 }}
               >
