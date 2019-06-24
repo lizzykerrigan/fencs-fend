@@ -11,6 +11,7 @@ const AdapterLink = React.forwardRef((props, ref) => (
 
 const useStyles = makeStyles(theme => ({
   profilePic: { height: 200 },
+  picContainer: { width: 205, padding: 20 },
   card: {
     width: "90%",
     marginLeft: "5%",
@@ -45,18 +46,25 @@ const Profile = props => {
             if (loading) return <p>Loading...</p>;
             if (error) return <p>Error</p>;
             console.log(data);
+            const user = data.users[0];
             return (
               <Card className={classes.card}>
                 <CardContent>
-                  <img
-                    src={data.users[0].avatar}
-                    alt="Profile"
-                    className={classes.profilePic}
-                  />
+                  <Card className={classes.picContainer}>
+                    <img
+                      src={user.avatar}
+                      alt="Profile"
+                      className={classes.profilePic}
+                    />
+                  </Card>
                 </CardContent>
                 <CardContent>
                   <Grid>
-                    <Typography> </Typography>
+                    <Typography variant="h5">{user.fullname}</Typography>
+                    <Typography> {user.date_joined}</Typography>
+                    <Typography> {user.email_address}</Typography>
+                    <Typography> {user.rating}</Typography>
+                    <Typography> {user.username}</Typography>
                   </Grid>
                 </CardContent>
               </Card>
