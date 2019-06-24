@@ -102,7 +102,10 @@ const Profile = props => {
                           {`Email: ${user.email_address}`}
                         </Typography>
                         <br />
-                        <Typography> {`Fullname: ${user.fullname}`}</Typography>
+                        <Typography>
+                          {" "}
+                          {`Full Name: ${user.fullname}`}
+                        </Typography>
                       </Grid>
                     </CardContent>
                   </Grid>
