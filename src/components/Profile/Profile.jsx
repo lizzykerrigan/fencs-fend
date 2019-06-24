@@ -5,6 +5,7 @@ import { Link } from "@reach/router";
 import { Card, CardContent, Button, Grid, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import format from "date-fns/format";
+import Rating from "react-rating";
 
 const AdapterLink = React.forwardRef((props, ref) => (
   <Link innerRef={ref} {...props} />
@@ -47,7 +48,6 @@ const Profile = props => {
           {({ loading, error, data }) => {
             if (loading) return <p>Loading...</p>;
             if (error) return <p>Error</p>;
-            console.log(data);
             const user = data.users[0];
             return (
               <Card className={classes.card}>
@@ -60,6 +60,7 @@ const Profile = props => {
                           alt="Profile"
                           className={classes.profilePic}
                         />
+                        <Rating initialRating={user.rating} readonly />
                       </Card>
                     </CardContent>
                   </Grid>
@@ -77,7 +78,6 @@ const Profile = props => {
                           )}`}
                         </Typography>
                         <Typography> {user.email_address}</Typography>
-                        <Typography> {user.rating}</Typography>
                         <Typography> {user.username}</Typography>
                       </Grid>
                     </CardContent>
