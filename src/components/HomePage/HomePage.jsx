@@ -29,9 +29,15 @@ class HomePage extends React.Component {
                   images {
                     image_id
                     title
+                    price
+                    description
+                    posted_by
+                    date_uploaded
                     display_name
                     thumbnail_url
+                    obj_image_url
                     likes
+                    category
                   }
                 }
               `}

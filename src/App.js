@@ -38,7 +38,10 @@ export default class App extends Component {
         <Router>
           <HomePage path="/" />
           <CategoriesPage path="/categories" />
-          <SingleImagePage path="/images/:image_id" />
+          <SingleImagePage
+            client={this.props.client}
+            path="/images/:image_id"
+          />
           <AboutPage path="/about_us" />
           <SignUp path="/sign_up" loginUser={this.loginUser} />
         </Router>
