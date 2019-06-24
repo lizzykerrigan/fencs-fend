@@ -17,6 +17,12 @@ export default class App extends Component {
     localStorage.setItem("loggedInUser", username);
   };
 
+  logoutUser = e => {
+    e.preventDefault();
+    this.setState({ loggedInUser: null });
+    localStorage.removeItem("loggedInUser");
+  };
+
   render() {
     return (
       <div>
@@ -24,6 +30,7 @@ export default class App extends Component {
           client={this.props.client}
           loginUser={this.loginUser}
           loggedInUser={this.state.loggedInUser}
+          logoutUser={this.logoutUser}
         />
         <Router>
           <HomePage path="/" />

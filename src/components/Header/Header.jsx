@@ -275,7 +275,7 @@ const Header = props => {
                 alignItems="stretch"
               >
                 <Typography>{`Logged in as: ${props.loggedInUser}`}</Typography>
-                <Button>
+                <Button onClick={props.logoutUser}>
                   <Typography>Logout</Typography>
                 </Button>
                 <IconButton
