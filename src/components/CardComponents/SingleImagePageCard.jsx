@@ -20,10 +20,14 @@ import { flexbox } from "@material-ui/system";
 
 const useStyles = makeStyles(theme => ({
   card: {
-    padding: 10,
+    padding: 15,
     marginTop: 20,
     width: "80%",
     marginLeft: "8%"
+  },
+  likes: {
+    marginBottom: 0,
+    marginLeft: 5
   },
   media: {
     height: 0,
@@ -89,6 +93,9 @@ const SingleImagePageCard = props => {
           <IconButton aria-label="Add to favorites">
             <FavoriteIcon />
           </IconButton>
+          <Typography className={classes.likes} paragraph>
+            {likes}
+          </Typography>
           <IconButton
             className={clsx(classes.expand, {
               [classes.expandOpen]: expanded
@@ -102,11 +109,9 @@ const SingleImagePageCard = props => {
         </CardActions>
         <Collapse in={expanded} timeout="auto" unmountOnExit>
           <CardContent>
-            <Typography paragraph />
-            <Typography paragraph>extra info</Typography>
-            <Typography paragraph>extra info</Typography>
-            <Typography paragraph>extra info</Typography>
-            <Typography>extra info</Typography>
+            <Typography paragraph>Designer: {posted_by}.</Typography>
+            <Typography paragraph>Price: £{price}</Typography>
+            <Typography paragraph>Category: {category}</Typography>
           </CardContent>
         </Collapse>
       </Card>
