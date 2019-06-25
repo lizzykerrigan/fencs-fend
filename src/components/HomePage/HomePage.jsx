@@ -27,10 +27,17 @@ class HomePage extends React.Component {
               query={gql`
                 {
                   images {
+                    image_id
                     title
+                    price
+                    description
+                    posted_by
+                    date_uploaded
                     display_name
                     thumbnail_url
+                    obj_image_url
                     likes
+                    category
                   }
                 }
               `}

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 import GLTFLoader from "three-gltf-loader";
+import "./3dModelCard.css";
 
 const style = {
   height: 500
@@ -18,19 +19,64 @@ export default class ModelCard extends Component {
   }
 
   sceneSetup = () => {
+    const { title } = this.props.image;
     const width = this.el.clientWidth;
     const height = this.el.clientHeight;
     this.scene = new THREE.Scene();
-    this.scene.background = new THREE.Color("rgb(219, 219, 219)");
+    this.scene.background = new THREE.Color("rgb(120, 120, 120)");
     this.camera = new THREE.PerspectiveCamera(75, width / height, 1, 1000);
-    this.camera.position.z = 20;
+
+    // this.camera.position.z = 100;
+    // this.camera.position.x = 50;
+    // this.camera.position.y = 50;
+
+    if (title === "Toilet") {
+      this.camera.position.z = 2;
+      this.camera.position.x = 2;
+      this.camera.position.y = 2;
+    }
+    if (title === "Safe") {
+      this.camera.position.z = 17;
+      this.camera.position.x = 10;
+      this.camera.position.y = 6;
+    }
+    if (title === "Skull") {
+      this.camera.position.z = 2;
+      this.camera.position.x = 1;
+      this.camera.position.y = 0;
+    }
+    if (title === "Cube") {
+      this.camera.position.z = 50;
+      this.camera.position.x = 30;
+      this.camera.position.y = 30;
+    }
+    if (title === "Hammer") {
+      this.camera.position.z = 3;
+      this.camera.position.x = 25;
+      this.camera.position.y = 2;
+    }
+    if (title === "Penguin") {
+      this.camera.position.z = 500;
+      this.camera.position.x = 250;
+      this.camera.position.y = 650;
+    }
+    if (title === "Smoking man") {
+      this.camera.position.z = 200;
+      this.camera.position.x = 800;
+      this.camera.position.y = 250;
+    }
+    if (title === "Pi") {
+      this.camera.position.z = 220;
+      this.camera.position.x = 520;
+      this.camera.position.y = 520;
+    }
 
     this.controls = new OrbitControls(this.camera, this.el);
     this.controls.enableDamping = true;
     this.controls.dampingFactor = 0.25;
     this.controls.enableZoom = true;
     this.controls.rotateSpeed = 1.0;
-    this.controls.zoomSpeed = 1.2;
+    this.controls.zoomSpeed = 0.5;
     this.controls.panSpeed = 0.8;
 
     this.renderer = new THREE.WebGLRenderer();
@@ -39,6 +85,7 @@ export default class ModelCard extends Component {
   };
 
   addCustomSceneObjects = () => {
+    const { obj_image_url } = this.props.image;
     const lights = [];
     lights[0] = new THREE.PointLight(0xffffff, 1, 0);
     lights[1] = new THREE.PointLight(0xffffff, 1, 0);
@@ -57,7 +104,7 @@ export default class ModelCard extends Component {
     const loader = new GLTFLoader();
 
     loader.load(
-      "https://dl.dropboxusercontent.com/s/s6h7j11rukhzu76/hammer.glb?dl=0",
+      obj_image_url,
       object => {
         const root = object.scene;
         this.scene.add(root);
@@ -88,6 +135,10 @@ export default class ModelCard extends Component {
   };
 
   render() {
-    return <div style={style} ref={ref => (this.el = ref)} />;
+    return (
+      <div className="single-image-container">
+        <div style={style} ref={ref => (this.el = ref)} />
+      </div>
+    );
   }
 }
