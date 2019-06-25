@@ -15,7 +15,7 @@ import { gql } from "apollo-boost";
 import { Mutation } from "react-apollo";
 import { navigate } from "@reach/router";
 
-const useStyles = makeStyles(theme => ({
+const styles = theme => ({
   "@global": {
     body: {
       backgroundColor: theme.palette.common.white
@@ -33,12 +33,12 @@ const useStyles = makeStyles(theme => ({
   },
   form: {
     width: "100%", // Fix IE 11 issue.
-    marginTop: theme.spacing(3)
+    marginTop: theme.spacing(1)
   },
   submit: {
     margin: theme.spacing(3, 0, 2)
   }
-}));
+});
 
 const adduser = gql`
   mutation insert_users($newUser: [users_insert_input!]!) {
@@ -54,10 +54,10 @@ const adduser = gql`
 
 class SignUp extends React.Component {
   state = {
-    userFullnameInput: "",
-    userEmailInput: "",
-    usernameInput: "",
-    loacationInput: "",
+    userFullnameInput: null,
+    userEmailInput: null,
+    usernameInput: null,
+    locationInput: null,
     has3Dprinter: false,
     is3Ddesigner: false
   };
@@ -80,7 +80,11 @@ class SignUp extends React.Component {
               <Avatar className={classes.avatar}>
                 <LockOutlinedIcon />
               </Avatar>
-              <Typography component="h1" variant="h5">
+              <Typography
+                className={classes.signUpText}
+                component="h1"
+                variant="h5"
+              >
                 Sign up
               </Typography>
               <form
@@ -91,7 +95,7 @@ class SignUp extends React.Component {
                   const newUser = {
                     email_address: this.state.userEmailInput,
                     fullname: this.state.userFullnameInput,
-                    location: this.state.loacationInput,
+                    location: this.state.locationInput,
                     username: this.state.usernameInput,
                     owns_printer: this.state.has3Dprinter,
                     designer_tag: this.state.is3Ddesigner
@@ -149,7 +153,7 @@ class SignUp extends React.Component {
                       variant="outlined"
                       required
                       fullWidth
-                      name="loacationInput"
+                      name="locationInput"
                       label="Location"
                       id="location"
                       onChange={this.handleInputChange}
@@ -201,4 +205,4 @@ class SignUp extends React.Component {
   }
 }
 
-export default withStyles(useStyles)(SignUp);
+export default withStyles(styles)(SignUp);
