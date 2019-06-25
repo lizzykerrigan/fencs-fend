@@ -45,10 +45,10 @@ export default class ModelCard extends Component {
       this.camera.position.x = 1;
       this.camera.position.y = 0;
     }
-    if (title === "Cube") {
-      this.camera.position.z = 50;
-      this.camera.position.x = 30;
-      this.camera.position.y = 30;
+    if (title === "Donut") {
+      this.camera.position.z = 2;
+      this.camera.position.x = 2;
+      this.camera.position.y = 2;
     }
     if (title === "Hammer") {
       this.camera.position.z = 3;
