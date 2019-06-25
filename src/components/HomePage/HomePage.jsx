@@ -46,7 +46,9 @@ class HomePage extends React.Component {
                 if (loading) return <p>Loading...</p>;
                 if (error) return <h1>{error.message}</h1>;
 
-                return data.images.map(image => <HomePageCard image={image} />);
+                return data.images.map((image, i) => (
+                  <HomePageCard key={`image${i}`} image={image} />
+                ));
               }}
             </Query>
           </Grid>
