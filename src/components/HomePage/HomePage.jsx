@@ -1,5 +1,5 @@
 import React from "react";
-import { makeStyles, withStyles } from "@material-ui/core/styles";
+import { withStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import HomePageCard from "../CardComponents/HomePageCard";
 import { Query } from "react-apollo";
@@ -27,17 +27,24 @@ class HomePage extends React.Component {
               query={gql`
                 {
                   images {
+                    image_id
                     title
+                    price
+                    description
+                    posted_by
+                    date_uploaded
                     display_name
                     thumbnail_url
+                    obj_image_url
                     likes
+                    category
                   }
                 }
               `}
             >
               {({ loading, error, data }) => {
                 if (loading) return <p>Loading...</p>;
-                if (error) return <p>Error :(</p>;
+                if (error) return <h1>{error.message}</h1>;
 
                 return data.images.map(image => <HomePageCard image={image} />);
               }}
