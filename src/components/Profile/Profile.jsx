@@ -14,6 +14,11 @@ import { makeStyles } from "@material-ui/core/styles";
 import format from "date-fns/format";
 import Rating from "react-rating";
 import HomePageCard from "../CardComponents/HomePageCard";
+import Email from "@material-ui/icons/Email";
+import Person from "@material-ui/icons/Person";
+import AccessTime from "@material-ui/icons/AccessTime";
+import Create from "@material-ui/icons/Create";
+import Print from "@material-ui/icons/Print";
 
 const AdapterLink = React.forwardRef((props, ref) => (
   <Link innerRef={ref} {...props} />
@@ -92,27 +97,30 @@ const Profile = props => {
                     <CardContent>
                       <Grid className={classes.userInfo}>
                         <Typography className={classes.username} variant="h5">
-                          {user.username}
+                          {user.username}{" "}
+                          {user.owns_printer === true && <Print />}
+                          {user.designer_tag === true && <Create />}
                         </Typography>
+
                         <br />
                         <Divider variant="middle" />
                         <br />
                         <Typography>
                           {" "}
-                          {`Created on: ${format(
-                            user.date_joined,
-                            "Do MMMM YYYY"
-                          )}`}
+                          <AccessTime />
+                          {`${format(user.date_joined, "Do MMMM YYYY")}`}
                         </Typography>
                         <br />
                         <Typography>
                           {" "}
-                          {`Email: ${user.email_address}`}
+                          <Email />
+                          {` ${user.email_address}`}
                         </Typography>
                         <br />
                         <Typography>
                           {" "}
-                          {`Full Name: ${user.fullname}`}
+                          <Person />
+                          {` ${user.fullname}`}
                         </Typography>
                       </Grid>
                     </CardContent>
