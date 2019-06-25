@@ -278,10 +278,11 @@ const Header = props => {
                 justify="center"
                 alignItems="stretch"
               >
+
                 <Typography className={classes.loggedIn}>
                   Logged in as:<strong> {`${props.loggedInUser}`}</strong>
                 </Typography>
-                <Button>
+                <Button onClick={props.logoutUser}>
                   <Typography>Logout</Typography>
                 </Button>
                 <IconButton
