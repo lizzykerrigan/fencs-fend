@@ -28,6 +28,10 @@ const AdapterLink = React.forwardRef((props, ref) => (
 ));
 
 const useStyles = makeStyles(theme => ({
+  loggedIn: {
+    marginTop: 11,
+    marginRight: 10
+  },
   list: {
     width: 250
   },
@@ -274,16 +278,21 @@ const Header = props => {
                 justify="center"
                 alignItems="stretch"
               >
-                <Typography>{`Logged in as: ${props.loggedInUser}`}</Typography>
+
+                <Typography className={classes.loggedIn}>
+                  Logged in as:<strong> {`${props.loggedInUser}`}</strong>
+                </Typography>
                 <Button onClick={props.logoutUser}>
                   <Typography>Logout</Typography>
                 </Button>
                 <IconButton
+                  component={AdapterLink}
+                  to={`/${props.loggedInUser}`}
                   edge="end"
                   aria-label="Account of current user"
-                  aria-controls={menuId}
-                  aria-haspopup="true"
-                  onClick={handleProfileMenuOpen}
+                  // aria-controls={menuId}
+                  // aria-haspopup="true"
+                  // onClick={handleProfileMenuOpen}
                   color="inherit"
                   className={classes.profileButton}
                 >
