@@ -31,7 +31,10 @@ export default class App extends Component {
           <CategoriesPage path="/categories" />
           <AboutPage path="/about_us" />
           <SignUp path="/sign_up" loginUser={this.loginUser} />
-          <UploadModel path="/upload_model" />
+          <UploadModel
+            path="/upload_model"
+            loggedInUser={this.state.loggedInUser}
+          />
         </Router>
       </div>
     );

@@ -5,14 +5,14 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
-import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import icon from "./icon.png";
 import { gql } from "apollo-boost";
 import { Mutation } from "react-apollo";
 import { navigate } from "@reach/router";
+import { withStyles } from "@material-ui/styles";
 
-const useStyles = makeStyles(theme => ({
+const styles = theme => ({
   "@global": {
     body: {
       backgroundColor: theme.palette.common.white
@@ -35,7 +35,7 @@ const useStyles = makeStyles(theme => ({
   submit: {
     margin: theme.spacing(3, 0, 2)
   }
-}));
+});
 
 const UPLOADMODEL = gql`
   mutation insert_images($newImage: [images_insert_input!]!) {
@@ -61,34 +61,33 @@ class UploadModel extends React.Component {
         {(insert_images, { loading, error, data }) => (
           <Container component="main" maxWidth="xs">
             <CssBaseline />
-            <div /*className={classes.paper}*/>
-              <Avatar /*className={classes.avatar}*/>
-                <img src={icon} />
+            <div className={classes.paper}>
+              <Avatar className={classes.avatar}>
+                <img src={icon} alt="logo" />
               </Avatar>
               <Typography component="h1" variant="h5">
                 Upload a model
               </Typography>
               <form
-                /*className={classes.form}*/ noValidate
+                className={classes.form}
+                noValidate
                 onSubmit={e => {
                   e.preventDefault();
                   const newImage = {
                     title: this.state.title,
                     description: this.state.description,
                     display_name: this.state.display_name,
-                    //update posted_by once login functionality working
-                    posted_by: "nejetherington",
+                    posted_by: this.props.loggedInUser,
                     price: this.state.price,
                     thumbnail_url: this.state.thumbnail_url,
-                    obj_img_url: this.state.obj_img_url,
+                    obj_image_url: this.state.obj_img_url,
                     format: this.state.format,
                     category: this.state.category
                   };
                   insert_images({
                     variables: { newImage }
                   }).then(data => {
-                    console.log(data);
-                    // navigate("/");
+                    navigate("/");
                   });
                 }}
               >
@@ -188,7 +187,7 @@ class UploadModel extends React.Component {
                   fullWidth
                   variant="contained"
                   color="primary"
-                  /*className={classes.submit}*/
+                  className={classes.submit}
                 >
                   Upload!
                 </Button>
@@ -201,4 +200,4 @@ class UploadModel extends React.Component {
   }
 }
 
-export default UploadModel;
+export default withStyles(styles)(UploadModel);
