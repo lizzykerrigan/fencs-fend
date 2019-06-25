@@ -143,6 +143,14 @@ const Header = props => {
         <ListItem button component={AdapterLink} to="/sign_up" key="sign_up">
           <ListItemText primary="Sign Up" />
         </ListItem>
+        <ListItem
+          button
+          component={AdapterLink}
+          to="/upload_model"
+          key="upload_model"
+        >
+          <ListItemText primary="Upload a model" />
+        </ListItem>
         <ListItem button component={AdapterLink} to="/profile" key="profile">
           <ListItemText primary="Profile" />
         </ListItem>
