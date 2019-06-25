@@ -140,8 +140,8 @@ const Profile = props => {
                         if (loading) return <p>Loading...</p>;
                         if (error) return <p>Error :(</p>;
 
-                        return data.images.map(image => (
-                          <HomePageCard image={image} />
+                        return data.images.map((image, i) => (
+                          <HomePageCard key={`userimage${i}`} image={image} />
                         ));
                       }}
                     </Query>
