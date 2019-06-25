@@ -71,9 +71,9 @@ export default class ModelCard extends Component {
       this.camera.position.y = 2;
     }
     if (title === "Penguin") {
-      this.camera.position.z = 500;
-      this.camera.position.x = 250;
-      this.camera.position.y = 650;
+      this.camera.position.z = 40;
+      this.camera.position.x = 20;
+      this.camera.position.y = 30;
     }
     if (title === "Smoking man") {
       this.camera.position.z = 100;
@@ -81,9 +81,9 @@ export default class ModelCard extends Component {
       this.camera.position.y = 250;
     }
     if (title === "Pi") {
-      this.camera.position.z = 220;
-      this.camera.position.x = 520;
-      this.camera.position.y = 520;
+      this.camera.position.z = 20;
+      this.camera.position.x = 20;
+      this.camera.position.y = 120;
     }
 
     this.controls = new OrbitControls(this.camera, this.el);
