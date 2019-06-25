@@ -37,6 +37,7 @@ export default class ModelCard extends Component {
     const mesh = new THREE.Mesh(geometry, material);
 
     this.scene.add(mesh);
+    
     // this.scene.background = new THREE.Color("rgb(120, 120, 120)");
     this.camera = new THREE.PerspectiveCamera(75, width / height, 1, 1000);
 
