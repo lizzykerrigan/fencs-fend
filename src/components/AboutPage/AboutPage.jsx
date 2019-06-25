@@ -5,7 +5,6 @@ import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
-import { Link } from "@reach/router";
 import Divider from "@material-ui/core/Divider";
 
 const useStyles = makeStyles({
@@ -64,6 +63,7 @@ export default function SimpleCard() {
         <a
           href="https://github.com/lizzykerrigan/fencs-front-end"
           target="_blank"
+          rel="noopener noreferrer"
         >
           <Button>Git</Button>
         </a>
