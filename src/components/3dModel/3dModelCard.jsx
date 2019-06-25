@@ -27,16 +27,16 @@ export default class ModelCard extends Component {
     const width = this.el.clientWidth;
     const height = this.el.clientHeight;
     this.scene = new THREE.Scene();
-    const loader = new THREE.CubeTextureLoader();
-    const texture = loader.load([
-      'https://threejsfundamentals.org/threejs/resources/images/cubemaps/computer-history-museum/pos-x.jpg',
-      'https://threejsfundamentals.org/threejs/resources/images/cubemaps/computer-history-museum/neg-x.jpg',
-      'https://threejsfundamentals.org/threejs/resources/images/cubemaps/computer-history-museum/pos-y.jpg',
-      'https://threejsfundamentals.org/threejs/resources/images/cubemaps/computer-history-museum/neg-y.jpg',
-      'https://threejsfundamentals.org/threejs/resources/images/cubemaps/computer-history-museum/pos-z.jpg',
-      'https://threejsfundamentals.org/threejs/resources/images/cubemaps/computer-history-museum/neg-z.jpg',
-    ]);
-    this.scene.background = texture;
+    const geometry = new THREE.SphereGeometry(500, 60, 40);
+    geometry.scale(- 1, 1, 1);
+
+    const material = new THREE.MeshBasicMaterial({
+      map: new THREE.TextureLoader().load('https://dl.dropboxusercontent.com/s/uv4gkfsgo6xwx42/northcoders.jpeg')
+    });
+
+    const mesh = new THREE.Mesh(geometry, material);
+
+    this.scene.add(mesh);
     // this.scene.background = new THREE.Color("rgb(120, 120, 120)");
     this.camera = new THREE.PerspectiveCamera(75, width / height, 1, 1000);
 
