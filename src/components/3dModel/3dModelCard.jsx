@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 import GLTFLoader from "three-gltf-loader";
+import "./3dModelCard.css";
 
 const style = {
   height: 500
@@ -134,6 +135,25 @@ export default class ModelCard extends Component {
   };
 
   render() {
-    return <div style={style} ref={ref => (this.el = ref)} />;
+    return (
+      <div className="single-image-container">
+        <div style={style} ref={ref => (this.el = ref)}>
+          <button onClick={() => this.changeColourWhite("white")}>White</button>
+          <button onClick={() => this.changeColourWhite("gray")}>Gray</button>
+          <button onClick={() => this.changeColourWhite("black")}>Black</button>
+          <button onClick={() => this.changeColourWhite("aqua")}>Aqua</button>
+        </div>
+      </div>
+    );
   }
+
+  changeColourWhite = colour => {
+    let colours = {
+      white: new THREE.Color("rgb(255,255,255, 0.3)"),
+      black: new THREE.Color("rgb(10,10, 10, 0.3)"),
+      gray: new THREE.Color("rgb(120, 120, 120)"),
+      aqua: new THREE.Color("rgba(0,255,255 ,1 )")
+    };
+    this.scene.background = colours[colour];
+  };
 }

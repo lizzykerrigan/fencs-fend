@@ -1,0 +1,8 @@
+.single-image-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.single-image-container canvas {
+  border-radius: 15px;
+}

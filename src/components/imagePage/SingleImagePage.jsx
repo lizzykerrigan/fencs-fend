@@ -12,6 +12,8 @@ export default class singleImagePage extends Component {
       <div>
         {this.state.image_by_pk && (
           <>
+            <h1>{image_by_pk.title}</h1>
+            <h4>{image_by_pk.description}</h4>
             <ModelCard image={image_by_pk} />
           </>
         )}
