@@ -149,7 +149,7 @@ const Header = props => {
           to="/upload_model"
           key="upload_model"
         >
-          <ListItemText primary="Upload a model" />
+          <ListItemText primary="Upload a 3D Model" />
         </ListItem>
         <ListItem button component={AdapterLink} to="/profile" key="profile">
           <ListItemText primary="Profile" />
@@ -286,7 +286,6 @@ const Header = props => {
                 justify="center"
                 alignItems="stretch"
               >
-
                 <Typography className={classes.loggedIn}>
                   Logged in as:<strong> {`${props.loggedInUser}`}</strong>
                 </Typography>
