@@ -15,8 +15,6 @@ import FavoriteIcon from "@material-ui/icons/Favorite";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import ModelCard from "../3dModel/3dModelCard";
-import singleImagePage from "../imagePage/SingleImagePage";
-import { flexbox } from "@material-ui/system";
 
 const useStyles = makeStyles(theme => ({
   card: {
@@ -70,11 +68,7 @@ const SingleImagePageCard = props => {
     <div className={classes.cardWrapper}>
       <Card className={classes.card}>
         <CardHeader
-          avatar={
-            <Avatar aria-label="Recipe" className={classes.avatar}>
-              hi
-            </Avatar>
-          }
+          avatar={<Avatar aria-label="Recipe" className={classes.avatar} />}
           action={
             <IconButton aria-label="Settings">
               <MoreVertIcon />
