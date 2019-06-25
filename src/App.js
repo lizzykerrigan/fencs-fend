@@ -4,14 +4,12 @@ import Header from "./components/Header/Header";
 import CategoriesPage from "./components/CategoriesPage/CategoriesPage";
 import { Router } from "@reach/router";
 import AboutPage from "./components/AboutPage/AboutPage";
-import ModelCard from "./components/3dModel/3dModelCard";
 import HomePage from "./components/HomePage/HomePage";
 import SignUp from "./components/SignUp/SignUp";
 
 import UploadModel from "./components/UploadModel/UploadModel";
 import SingleImagePage from "./components/imagePage/SingleImagePage";
 import Profile from "./components/Profile/Profile";
-
 
 export default class App extends Component {
   state = {

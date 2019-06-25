@@ -1,7 +1,5 @@
 import React, { Component } from "react";
-import ModelCard from "../3dModel/3dModelCard";
 import SingleImagePageCard from "../CardComponents/SingleImagePageCard";
-import { Query } from "react-apollo";
 import { gql } from "apollo-boost";
 
 export default class singleImagePage extends Component {
@@ -14,7 +12,6 @@ export default class singleImagePage extends Component {
         {this.state.image_by_pk && (
           <>
             <SingleImagePageCard image={image_by_pk} />
-            {/* <ModelCard image={image_by_pk} /> */}
           </>
         )}
       </div>

@@ -14,10 +14,12 @@ const useStyles = makeStyles({
     textTransform: "capitalize"
   },
   card: {
-    width: 545
+    width: 300,
+    marginLeft: 10,
+    marginBottom: 20
   },
   media: {
-    height: 540
+    height: 300
   }
 });
 

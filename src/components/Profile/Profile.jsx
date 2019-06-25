@@ -22,7 +22,12 @@ const AdapterLink = React.forwardRef((props, ref) => (
 const useStyles = makeStyles(theme => ({
   profilePic: { height: 200 },
   username: { textTransform: "capitalize" },
-  picContainer: { width: 205, padding: 20 },
+  picContainer: {
+    width: "100%",
+    padding: 20,
+    margin: 10,
+    alignContent: "space around"
+  },
   card: {
     width: "90%",
     marginLeft: "5%",
@@ -31,10 +36,15 @@ const useStyles = makeStyles(theme => ({
   },
   imagesCard: {
     width: "90%",
-    marginLeft: "5%",
-    marginTop: "20px",
-    marginBottom: "30px",
+    marginLeft: 10,
+    marginTop: 10,
+    // marginLeft: "5%",
+    // marginTop: "20px",
+    // marginBottom: "30px",
     padding: 20
+  },
+  userInfo: {
+    margin: 20
   }
 }));
 
@@ -69,20 +79,18 @@ const Profile = props => {
               <Card className={classes.card}>
                 <Grid container spacing={3}>
                   <Grid item md={3} sm={9}>
-                    <CardContent>
-                      <Card className={classes.picContainer}>
-                        <img
-                          src={user.avatar}
-                          alt="Profile"
-                          className={classes.profilePic}
-                        />
-                        <Rating initialRating={user.rating} readonly />
-                      </Card>
-                    </CardContent>
+                    <Card className={classes.picContainer}>
+                      <img
+                        src={user.avatar}
+                        alt="Profile"
+                        className={classes.profilePic}
+                      />
+                      <Rating initialRating={user.rating} readonly />
+                    </Card>
                   </Grid>
                   <Grid className={classes.details} item md={9} sm={11}>
                     <CardContent>
-                      <Grid>
+                      <Grid className={classes.userInfo}>
                         <Typography className={classes.username} variant="h5">
                           {user.username}
                         </Typography>
@@ -132,8 +140,8 @@ const Profile = props => {
                         if (loading) return <p>Loading...</p>;
                         if (error) return <h1>{error.message}</h1>;;
 
-                        return data.images.map(image => (
-                          <HomePageCard image={image} />
+                        return data.images.map((image, i) => (
+                          <HomePageCard key={`userimage${i}`} image={image} />
                         ));
                       }}
                     </Query>

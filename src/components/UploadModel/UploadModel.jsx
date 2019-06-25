@@ -62,11 +62,9 @@ class UploadModel extends React.Component {
           <Container component="main" maxWidth="xs">
             <CssBaseline />
             <div className={classes.paper}>
-              <Avatar className={classes.avatar}>
-                <img src={icon} alt="logo" />
-              </Avatar>
+              <Avatar className={classes.avatar} img src={icon} alt="logo" />
               <Typography component="h1" variant="h5">
-                Upload a model
+                Upload a 3D Model
               </Typography>
               <form
                 className={classes.form}
