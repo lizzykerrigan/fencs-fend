@@ -16,11 +16,15 @@ const useStyles = makeStyles({
     marginTop: "30px"
   },
   title: {
-    fontSize: 30,
+    fontSize: 25,
     textAlign: "center"
   },
   pos: {
     marginBottom: 12
+  },
+  description: {
+    fontSize: 18,
+    textAlign: "center"
   }
 });
 
@@ -36,38 +40,76 @@ export default function SimpleCard() {
         <br />
         <Divider variant="middle" />
         <br />
-        <Typography className={classes.poss} color="textSecondary">
+        <Typography className={classes.title} variant="h6" noWrap>
+          <img src="../../icon.png" alt="3D Logo" height="80px" />
           3D PI
         </Typography>
         <br />
-        <Typography variant="body2" component="p">
-          This is a 3D Print market place where you can find superb, majestic,
-          incredible designs to print at home or with one of our suggested
-          vendours.
+        <Typography
+          variant="body2"
+          component="p"
+          className={classes.description}
+        >
+          3DPI is an e-commerce site, linking 3D image designers with owners of
+          3D printers and consumers looking to purchase superb, majestic,
+          incredible 3D-printed images.
           <br />
           <br />
-          The Team:
           <br />
-          <a href="https://github.com/cpbattrick">Charles</a>
-          <br />
-          <a href="https://github.com/NEJEtherington">Nick</a>
-          <br />
-          <a href="https://github.com/lizzykerrigan">Elizabeth</a>
-          <br />
-          <a href="https://github.com/FraserKemp">Fraser</a>
-          <br />
-          <a href="https://github.com/SH-H-B">Shiva</a>
+          Our team :
+          <CardActions>
+            <a
+              href="https://github.com/cpbattrick"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {" "}
+              <i class="fab fa-github" />
+              <Button>Charles</Button>
+            </a>
+            <br />
+            <a
+              href="https://github.com/NEJEtherington"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {" "}
+              <i class="fab fa-github" />
+              <Button>Nick</Button>
+            </a>
+            <br />
+            <a
+              href="https://github.com/lizzykerrigan"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {" "}
+              <i class="fab fa-github" />
+              <Button>Elizabeth</Button>
+            </a>
+            <br />
+            <a
+              href="https://github.com/FraserKemp"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {" "}
+              <i class="fab fa-github" />
+              <Button>Fraser</Button>
+            </a>
+            <br />
+            <a
+              href="https://github.com/SH-H-B"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {" "}
+              <i class="fab fa-github" />
+              <Button>Shiva</Button>
+            </a>
+          </CardActions>
         </Typography>
       </CardContent>
-      <CardActions>
-        <a
-          href="https://github.com/lizzykerrigan/fencs-front-end"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Button>Git</Button>
-        </a>
-      </CardActions>
     </Card>
   );
 }

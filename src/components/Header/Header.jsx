@@ -45,7 +45,10 @@ const styles = theme => ({
   title: {
     transition: "0.4s",
     display: "block",
-    fontSize: "5vw"
+    fontSize: "5vw",
+    [theme.breakpoints.down("md")]: {
+      display: "none"
+    }
   },
 
   inputRoot: {

@@ -8,6 +8,7 @@ import { MuiThemeProvider, createMuiTheme } from "@material-ui/core";
 import { orange, yellow, purple } from "@material-ui/core/colors";
 import { ApolloProvider } from "react-apollo";
 import ApolloClient from "apollo-boost";
+import "../node_modules/@fortawesome/fontawesome-free/css/all.css";
 
 const client = new ApolloClient({
   uri: "https://fencs-back-end.herokuapp.com/v1/graphql"
@@ -24,20 +25,21 @@ const theme = createMuiTheme({
     error: {
       main: purple[700]
     }
-  }, typography: {
+  },
+  typography: {
     fontFamily: [
-      '-apple-system',
-      'BlinkMacSystemFont',
+      "-apple-system",
+      "BlinkMacSystemFont",
       '"Segoe UI"',
-      'Roboto',
+      "Roboto",
       '"Helvetica Neue"',
-      'Arial',
-      'sans-serif',
+      "Arial",
+      "sans-serif",
       '"Apple Color Emoji"',
       '"Segoe UI Emoji"',
-      '"Segoe UI Symbol"',
-    ].join(','),
-  },
+      '"Segoe UI Symbol"'
+    ].join(",")
+  }
 });
 
 ReactDOM.render(

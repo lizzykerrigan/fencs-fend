@@ -112,9 +112,18 @@ const SingleImagePageCard = props => {
         </CardActions>
         <Collapse in={expanded} timeout="auto" unmountOnExit>
           <CardContent>
-            <Typography paragraph>Designer: {posted_by}</Typography>
-            <Typography paragraph>Price: £{price}</Typography>
-            <Typography paragraph>Category: {category}</Typography>
+
+            <Typography paragraph>
+              <i class="fab fa-sketch fa-2x" /> {posted_by}
+            </Typography>
+            <Typography paragraph>
+              <i class="far fa-money-bill-alt fa-2x " /> .£{price}
+            </Typography>
+            <Typography paragraph>
+              <i class="far fa-flag fa-2x" />.{category}
+            </Typography>
+            
+
           </CardContent>
         </Collapse>
       </Card>
