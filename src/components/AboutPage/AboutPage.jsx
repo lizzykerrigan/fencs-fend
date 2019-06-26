@@ -48,26 +48,59 @@ export default function SimpleCard() {
           <br />
           The Team:
           <br />
-          <a href="https://github.com/cpbattrick">Charles</a>
-          <br />
-          <a href="https://github.com/NEJEtherington">Nick</a>
-          <br />
-          <a href="https://github.com/lizzykerrigan">Elizabeth</a>
-          <br />
-          <a href="https://github.com/FraserKemp">Fraser</a>
-          <br />
-          <a href="https://github.com/SH-H-B">Shiva</a>
+          <CardActions>
+            <a
+              href="https://github.com/cpbattrick"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {" "}
+              <i class="fab fa-github" />
+              <Button>Charles</Button>
+            </a>
+            <br />
+            <a
+              href="https://github.com/NEJEtherington"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {" "}
+              <i class="fab fa-github" />
+              <Button>Nick</Button>
+            </a>
+            <br />
+            <a
+              href="https://github.com/lizzykerrigan"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {" "}
+              <i class="fab fa-github" />
+              <Button>Elizabeth</Button>
+            </a>
+            <br />
+            <a
+              href="https://github.com/FraserKemp"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {" "}
+              <i class="fab fa-github" />
+              <Button>Fraser</Button>
+            </a>
+            <br />
+            <a
+              href="https://github.com/SH-H-B"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {" "}
+              <i class="fab fa-github" />
+              <Button>Shiva</Button>
+            </a>
+          </CardActions>
         </Typography>
       </CardContent>
-      <CardActions>
-        <a
-          href="https://github.com/lizzykerrigan/fencs-front-end"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Button>Git</Button>
-        </a>
-      </CardActions>
     </Card>
   );
 }
