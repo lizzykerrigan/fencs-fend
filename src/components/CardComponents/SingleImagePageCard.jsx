@@ -106,7 +106,7 @@ const SingleImagePageCard = props => {
               <i class="fab fa-sketch fa-2x" /> {posted_by}
             </Typography>
             <Typography paragraph>
-              <i class="far fa-money-bill-alt fa-2x" /> .£{price}
+              <i class="far fa-money-bill-alt fa-2x " /> .£{price}
             </Typography>
             <Typography paragraph>
               <i class="far fa-flag fa-2x" />.{category}
