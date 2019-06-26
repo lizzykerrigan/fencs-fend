@@ -139,6 +139,7 @@ const Header = props => {
             <MenuIcon />
           </IconButton>
           <Typography className={classes.title} variant="h6" noWrap>
+            <img src="../../icon.png" alt="3D Logo" height="80px" />
             3D PI
           </Typography>
 
