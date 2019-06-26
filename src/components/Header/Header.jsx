@@ -39,7 +39,10 @@ const useStyles = makeStyles(theme => ({
   },
   title: {
     display: "block",
-    fontSize: "5vw"
+    fontSize: "5vw",
+    [theme.breakpoints.down("md")]: {
+      display: "none"
+    }
   },
 
   inputRoot: {
@@ -145,7 +148,12 @@ const Header = props => {
           <Typography className={classes.title} variant="h6" noWrap>
             3D PI
           </Typography>
-          <img src="../../splashscreen.png" alt="3D PI Logo" height="80px" className={classes.logo}/>
+          <img
+            src="../../splashscreen.png"
+            alt="3D PI Logo"
+            height="80px"
+            className={classes.logo}
+          />
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
             {!props.loggedInUser && (
