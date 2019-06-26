@@ -36,7 +36,7 @@ class CategoriesPage extends React.Component {
             >
               {({ loading, error, data }) => {
                 if (loading) return <p>Loading...</p>;
-                if (error) return <p>Error :(</p>;
+                if (error) return <h1>{error.message}</h1>;
 
                 return data.categories.map(category => (
                   <CategoryCard category={category} />

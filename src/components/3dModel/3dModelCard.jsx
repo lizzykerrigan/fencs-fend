@@ -15,7 +15,11 @@ export default class ModelCard extends Component {
     this.sceneSetup();
     this.addCustomSceneObjects();
     this.startAnimationLoop();
-    window.addEventListener("resize", this.handleWinndowResize);
+    window.addEventListener("resize", this.handleWinndowResize, false);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener("resize", this.handleWinndowResize, false);
   }
 
   sceneSetup = () => {
@@ -23,12 +27,23 @@ export default class ModelCard extends Component {
     const width = this.el.clientWidth;
     const height = this.el.clientHeight;
     this.scene = new THREE.Scene();
-    this.scene.background = new THREE.Color("rgb(120, 120, 120)");
+    const geometry = new THREE.SphereGeometry(500, 60, 40);
+    geometry.scale(- 1, 1, 1);
+
+    const material = new THREE.MeshBasicMaterial({
+      map: new THREE.TextureLoader().load('https://dl.dropboxusercontent.com/s/uv4gkfsgo6xwx42/northcoders.jpeg')
+    });
+
+    const mesh = new THREE.Mesh(geometry, material);
+
+    this.scene.add(mesh);
+    
+    // this.scene.background = new THREE.Color("rgb(120, 120, 120)");
     this.camera = new THREE.PerspectiveCamera(75, width / height, 1, 1000);
 
-    // this.camera.position.z = 100;
-    // this.camera.position.x = 50;
-    // this.camera.position.y = 50;
+    this.camera.position.z = 100;
+    this.camera.position.x = 50;
+    this.camera.position.y = 50;
 
     if (title === "Toilet") {
       this.camera.position.z = 2;
@@ -45,10 +60,10 @@ export default class ModelCard extends Component {
       this.camera.position.x = 1;
       this.camera.position.y = 0;
     }
-    if (title === "Cube") {
-      this.camera.position.z = 50;
-      this.camera.position.x = 30;
-      this.camera.position.y = 30;
+    if (title === "Donut") {
+      this.camera.position.z = 2;
+      this.camera.position.x = 2;
+      this.camera.position.y = 2;
     }
     if (title === "Hammer") {
       this.camera.position.z = 3;
@@ -56,19 +71,19 @@ export default class ModelCard extends Component {
       this.camera.position.y = 2;
     }
     if (title === "Penguin") {
-      this.camera.position.z = 500;
-      this.camera.position.x = 250;
-      this.camera.position.y = 650;
+      this.camera.position.z = 40;
+      this.camera.position.x = 20;
+      this.camera.position.y = 30;
     }
     if (title === "Smoking man") {
-      this.camera.position.z = 200;
-      this.camera.position.x = 800;
+      this.camera.position.z = 100;
+      this.camera.position.x = 200;
       this.camera.position.y = 250;
     }
     if (title === "Pi") {
-      this.camera.position.z = 220;
-      this.camera.position.x = 520;
-      this.camera.position.y = 520;
+      this.camera.position.z = 20;
+      this.camera.position.x = 20;
+      this.camera.position.y = 120;
     }
 
     this.controls = new OrbitControls(this.camera, this.el);
@@ -90,16 +105,23 @@ export default class ModelCard extends Component {
     lights[0] = new THREE.PointLight(0xffffff, 1, 0);
     lights[1] = new THREE.PointLight(0xffffff, 1, 0);
     lights[2] = new THREE.PointLight(0xffffff, 1, 0);
+    lights[3] = new THREE.PointLight(0xffffff, 1, 0);
+    lights[4] = new THREE.PointLight(0xffffff, 1, 0);
 
-    lights[0].position.set(0, 200, 0);
-    lights[1].position.set(100, 200, 100);
-    lights[2].position.set(-100, -200, -100);
+    lights[0].position.set(0, 100, 0);
+    lights[1].position.set(50, 100, 50);
+    lights[2].position.set(-50, -10, -50);
+    lights[3].position.set(-15, 10, 15);
+    lights[4].position.set(15, 10, 15);
+
     const Hlight = new THREE.HemisphereLight(0xffffbb, 0x080820, 1);
-    this.scene.add(Hlight);
 
     this.scene.add(lights[0]);
     this.scene.add(lights[1]);
     this.scene.add(lights[2]);
+    this.scene.add(lights[3]);
+    this.scene.add(lights[4]);
+    this.scene.add(Hlight);
 
     const loader = new GLTFLoader();
 
