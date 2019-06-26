@@ -1,5 +1,5 @@
-import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
+import React, { Component } from "react";
+import { withStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import IconButton from "@material-ui/core/IconButton";
@@ -14,12 +14,17 @@ import { Link } from "@reach/router";
 import LoginBox from "../Login/LoginBox";
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
+import { inherits } from "util";
 
 const AdapterLink = React.forwardRef((props, ref) => (
   <Link innerRef={ref} {...props} />
 ));
 
-const useStyles = makeStyles(theme => ({
+const storeScroll = () => {
+  document.documentElement.dataset.scroll = window.scrollY;
+};
+
+const styles = theme => ({
   loggedIn: {
     marginTop: 11,
     marginRight: 10
@@ -38,6 +43,7 @@ const useStyles = makeStyles(theme => ({
     marginRight: theme.spacing(2)
   },
   title: {
+    transition: "0.4s",
     display: "block",
     fontSize: "5vw",
     [theme.breakpoints.down("md")]: {
@@ -61,134 +67,214 @@ const useStyles = makeStyles(theme => ({
   },
   logo: {
     paddingLeft: "30px"
-  }
-}));
-
-const Header = props => {
-  const classes = useStyles();
-
-  const [state, setState] = React.useState({
-    top: false,
-    left: false,
-    bottom: false,
-    right: false
-  });
-
-  const toggleDrawer = (side, open) => event => {
-    if (
-      event &&
-      event.type === "keydown" &&
-      (event.key === "Tab" || event.key === "Shift")
-    ) {
-      return;
+  },
+  navbar: {
+    transition: "0.2s",
+    position: "fixed"
+  },
+  navbarScroll: {
+    transition: "0.2s",
+    position: "fixed",
+    backgroundColor: "transparent",
+    boxShadow: "none",
+    border: 10,
+    borderBottom: "1px solid rgb(0, 0, 0)"
+  },
+  titleScroll: {
+    transition: "0.2s",
+    display: "block",
+    fontSize: "5vw",
+    color: "#000000"
+  },
+  menuButtonScroll: {
+    marginRight: theme.spacing(2),
+    color: "#000000",
+    transition: "0.4s",
+    "&:hover": {
+      backgroundColor: "#ff9800"
     }
-    setState({ ...state, [side]: open });
+  },
+  logoutScoll: {
+    transition: "0.4s",
+    "&:hover": {
+      backgroundColor: "#ffa726"
+    }
+  }
+});
+
+class Header extends Component {
+  state = {
+    left: false,
+    isScrolled: null
   };
 
-  const sideList = side => (
-    <div
-      className={classes.list}
-      role="presentation"
-      onClick={toggleDrawer(side, false)}
-      onKeyDown={toggleDrawer(side, false)}
-    >
-      <List>
-        <ListItem button component={AdapterLink} to="/" key="home">
-          <ListItemText primary="Home" />
-        </ListItem>
-        <ListItem
-          button
-          component={AdapterLink}
-          to="/categories"
-          key="categories"
-        >
-          <ListItemText primary="Categories" />
-        </ListItem>
-        <ListItem button component={AdapterLink} to="/sign_up" key="sign_up">
-          <ListItemText primary="Sign Up" />
-        </ListItem>
-        <ListItem
-          button
-          component={AdapterLink}
-          to="/upload_model"
-          key="upload_model"
-        >
-          <ListItemText primary="Upload a 3D Model" />
-        </ListItem>
-        <ListItem button component={AdapterLink} to="/profile" key="profile">
-          <ListItemText primary="Profile" />
-        </ListItem>
-        <ListItem button component={AdapterLink} to="/about_us" key="about_us">
-          <ListItemText primary="About Us" />
-        </ListItem>
-      </List>
-    </div>
-  );
+  componentDidMount() {
+    window.addEventListener("scroll", this.handleScroll);
+  }
 
-  return (
-    <div className={classes.grow}>
-      <AppBar position="static">
-        <SwipeableDrawer
-          open={state.left}
-          onClose={toggleDrawer("left", false)}
-          onOpen={toggleDrawer("left", true)}
-        >
-          {sideList("left")}
-        </SwipeableDrawer>
-        <Toolbar>
-          <IconButton
-            edge="start"
-            className={classes.menuButton}
-            color="inherit"
-            aria-label="Open drawer"
-            onClick={toggleDrawer("left", true)}
+  componentWillMount() {
+    window.removeEventListener("scroll", this.handleScroll);
+  }
+
+  handleScroll = e => {
+    const top = window.scrollY < 100;
+    this.setState({ isScrolled: top });
+  };
+
+  render() {
+    const { classes } = this.props;
+
+    const toggleDrawer = (side, open) => event => {
+      if (
+        event &&
+        event.type === "keydown" &&
+        (event.key === "Tab" || event.key === "Shift")
+      ) {
+        return;
+      }
+      this.setState({ ...this.state, [side]: open });
+    };
+
+    const sideList = side => (
+      <div
+        className={classes.list}
+        role="presentation"
+        onClick={toggleDrawer(side, false)}
+        onKeyDown={toggleDrawer(side, false)}
+      >
+        <List>
+          <ListItem button component={AdapterLink} to="/" key="home">
+            <ListItemText primary="Home" />
+          </ListItem>
+          <ListItem
+            button
+            component={AdapterLink}
+            to="/categories"
+            key="categories"
           >
-            <MenuIcon />
-          </IconButton>
-          <Typography className={classes.title} variant="h6" noWrap>
-            3D PI
-          </Typography>
-          <img
-            src="../../splashscreen.png"
-            alt="3D PI Logo"
-            height="80px"
-            className={classes.logo}
-          />
-          <div className={classes.grow} />
-          <div className={classes.sectionDesktop}>
-            {!props.loggedInUser && (
-              <LoginBox client={props.client} loginUser={props.loginUser} />
-            )}
-            {props.loggedInUser && (
-              <Grid
-                container
-                direction="row"
-                justify="center"
-                alignItems="stretch"
-              >
-                <Typography className={classes.loggedIn}>
-                  Logged in as:<strong> {`${props.loggedInUser}`}</strong>
-                </Typography>
-                <Button onClick={props.logoutUser}>
-                  <Typography>Logout</Typography>
-                </Button>
-                <IconButton
-                  component={AdapterLink}
-                  to={`/${props.loggedInUser}`}
-                  edge="end"
-                  aria-label="Account of current user"
-                  color="inherit"
-                  className={classes.profileButton}
-                >
-                  <AccountCircle />
-                </IconButton>
-              </Grid>
-            )}
-          </div>
-        </Toolbar>
-      </AppBar>
-    </div>
-  );
-};
+            <ListItemText primary="Categories" />
+          </ListItem>
+          <ListItem button component={AdapterLink} to="/sign_up" key="sign_up">
+            <ListItemText primary="Sign Up" />
+          </ListItem>
+          <ListItem
+            button
+            component={AdapterLink}
+            to="/upload_model"
+            key="upload_model"
+          >
+            <ListItemText primary="Upload a 3D Model" />
+          </ListItem>
+          <ListItem button component={AdapterLink} to="/profile" key="profile">
+            <ListItemText primary="Profile" />
+          </ListItem>
+          <ListItem
+            button
+            component={AdapterLink}
+            to="/about_us"
+            key="about_us"
+          >
+            <ListItemText primary="About Us" />
+          </ListItem>
+        </List>
+      </div>
+    );
 
-export default Header;
+    return (
+      <div className={classes.grow}>
+        <AppBar
+          className={
+            this.state.isScrolled === false
+              ? classes.navbar
+              : classes.navbarScroll
+          }
+          position="static"
+        >
+          <SwipeableDrawer
+            open={this.state.left}
+            onClose={toggleDrawer("left", false)}
+            onOpen={toggleDrawer("left", true)}
+          >
+            {sideList("left")}
+          </SwipeableDrawer>
+          <Toolbar>
+            <IconButton
+              edge="start"
+              className={
+                this.state.isScrolled === false
+                  ? classes.menuButton
+                  : classes.menuButtonScroll
+              }
+              color="inherit"
+              aria-label="Open drawer"
+              onClick={toggleDrawer("left", true)}
+            >
+              <MenuIcon />
+            </IconButton>
+            <Typography
+              className={
+                this.state.isScrolled === false
+                  ? classes.title
+                  : classes.titleScroll
+              }
+              variant="h6"
+              noWrap
+            >
+              3D PI
+            </Typography>
+            <img
+              src="../../splashscreen.png"
+              alt="3D PI Logo"
+              height="80px"
+              className={classes.logo}
+            />
+            <div className={classes.grow} />
+            <div className={classes.sectionDesktop}>
+              {!this.props.loggedInUser && (
+                <LoginBox
+                  client={this.props.client}
+                  loginUser={this.props.loginUser}
+                />
+              )}
+              {this.props.loggedInUser && (
+                <Grid
+                  container
+                  direction="row"
+                  justify="center"
+                  alignItems="stretch"
+                >
+                  <Typography className={classes.loggedIn}>
+                    Logged in as:
+                    <strong> {`${this.props.loggedInUser}`}</strong>
+                  </Typography>
+                  <Button
+                    className={
+                      this.state.isScrolled === false
+                        ? classes.logout
+                        : classes.loggedInScroll
+                    }
+                    onClick={this.props.logoutUser}
+                  >
+                    <Typography>Logout</Typography>
+                  </Button>
+                  <IconButton
+                    component={AdapterLink}
+                    to={`/${this.props.loggedInUser}`}
+                    edge="end"
+                    aria-label="Account of current user"
+                    color="inherit"
+                    className={classes.profileButton}
+                  >
+                    <AccountCircle />
+                  </IconButton>
+                </Grid>
+              )}
+            </div>
+          </Toolbar>
+        </AppBar>
+      </div>
+    );
+  }
+}
+
+export default withStyles(styles)(Header);

@@ -7,7 +7,7 @@ import { gql } from "apollo-boost";
 
 const styles = theme => ({
   root: {
-    marginTop: "20px",
+    marginTop: "80px",
     flexGrow: 1
   }
 });
