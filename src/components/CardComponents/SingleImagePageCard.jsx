@@ -102,7 +102,7 @@ const SingleImagePageCard = props => {
               <Typography>Print Works</Typography>
             </Button>
             <Button
-              onClick={() => setBackground("https://i.imgur.com/pOLHVOz.jpg")}
+              onClick={() => setBackground("https://i.imgur.com/Uyyv1fo.jpg")}
             >
               <Typography>Print Works Inside</Typography>
             </Button>

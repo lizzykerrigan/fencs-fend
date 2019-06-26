@@ -9,25 +9,23 @@ const style = {
 };
 
 export default class ModelCard extends Component {
-  state = { images: null, background: "https://i.imgur.com/8J6rlJZ.jpg" };
+  state = { images: null };
 
   componentDidMount() {
     this.sceneSetup(this.state.background);
     this.addCustomSceneObjects();
     this.startAnimationLoop();
     window.addEventListener("resize", this.handleWinndowResize, false);
-    this.setState({ background: this.props.background });
   }
 
   componentDidUpdate(prevProps, prevState) {
     if (prevProps.background !== this.props.background) {
-      this.setState({ background: this.props.background });
-
+      console.log(this.props.background);
       const geometry = new THREE.SphereGeometry(500, 60, 40);
       geometry.scale(-1, 1, 1);
 
       const material = new THREE.MeshBasicMaterial({
-        map: new THREE.TextureLoader().load(this.state.background)
+        map: new THREE.TextureLoader().load(this.props.background)
       });
 
       const mesh = new THREE.Mesh(geometry, material);
@@ -49,7 +47,7 @@ export default class ModelCard extends Component {
     geometry.scale(-1, 1, 1);
 
     const material = new THREE.MeshBasicMaterial({
-      map: new THREE.TextureLoader().load(this.state.background)
+      map: new THREE.TextureLoader().load(this.props.background)
     });
 
     const mesh = new THREE.Mesh(geometry, material);
