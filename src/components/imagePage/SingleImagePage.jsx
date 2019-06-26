@@ -59,11 +59,6 @@ export default class singleImagePage extends Component {
   };
 
   handleVote = (id, direction) => {
-    // this.setState(prevState => {
-    //   return {
-    //     voteChange: prevState.voteChange + direction
-    //   };
-    // });
     if (this.state.voteChange !== 0) {
       this.patchVote(id, -1);
     } else {

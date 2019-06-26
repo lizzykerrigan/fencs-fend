@@ -16,6 +16,9 @@ import MoreVertIcon from "@material-ui/icons/MoreVert";
 import ModelCard from "../3dModel/3dModelCard";
 
 const useStyles = makeStyles(theme => ({
+  voted: {
+    color: red[500]
+  },
   card: {
     padding: 15,
     marginTop: 20,
@@ -84,6 +87,7 @@ const SingleImagePageCard = props => {
         </CardContent>
         <CardActions disableSpacing>
           <IconButton
+            className={props.voteChange === 1 && classes.voted}
             onClick={() => {
               props.vote(props.id, 1);
             }}
