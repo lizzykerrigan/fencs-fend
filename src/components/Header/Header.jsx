@@ -55,6 +55,9 @@ const useStyles = makeStyles(theme => ({
   },
   sectionDesktop: {
     display: "flex"
+  },
+  logo: {
+    paddingLeft: "30px"
   }
 }));
 
@@ -142,7 +145,7 @@ const Header = props => {
           <Typography className={classes.title} variant="h6" noWrap>
             3D PI
           </Typography>
-          <img src="../../splashscreen.png" alt="3D PI Logo" height="80px" padding="50px auto" className="logo"/>
+          <img src="../../splashscreen.png" alt="3D PI Logo" height="80px" className={classes.logo}/>
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
             {!props.loggedInUser && (
