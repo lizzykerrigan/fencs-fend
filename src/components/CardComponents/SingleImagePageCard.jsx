@@ -23,7 +23,8 @@ const useStyles = makeStyles(theme => ({
     padding: 15,
     marginTop: 20,
     width: "80%",
-    marginLeft: "8%"
+    marginLeft: "8%",
+    backgroundColor: "whitesmoke"
   },
   likes: {
     marginBottom: 0,
