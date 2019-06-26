@@ -31,7 +31,7 @@ export default class ModelCard extends Component {
     geometry.scale(- 1, 1, 1);
 
     const material = new THREE.MeshBasicMaterial({
-      map: new THREE.TextureLoader().load('https://dl.dropboxusercontent.com/s/uv4gkfsgo6xwx42/northcoders.jpeg')
+      map: new THREE.TextureLoader().load('https://i.imgur.com/I5aEaiq.jpg')
     });
 
     const mesh = new THREE.Mesh(geometry, material);
