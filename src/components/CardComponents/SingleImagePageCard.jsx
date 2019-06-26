@@ -83,11 +83,16 @@ const SingleImagePageCard = props => {
           </Typography>
         </CardContent>
         <CardActions disableSpacing>
-          <IconButton aria-label="Add to favorites">
+          <IconButton
+            onClick={() => {
+              props.vote(props.id, 1);
+            }}
+            aria-label="Add to favorites"
+          >
             <FavoriteIcon />
           </IconButton>
           <Typography className={classes.likes} paragraph>
-            {likes}
+            {likes + props.voteChange}
           </Typography>
           <IconButton
             className={clsx(classes.expand, {
@@ -102,7 +107,7 @@ const SingleImagePageCard = props => {
         </CardActions>
         <Collapse in={expanded} timeout="auto" unmountOnExit>
           <CardContent>
-            <Typography paragraph>Designer: {posted_by}.</Typography>
+            <Typography paragraph>Designer: {posted_by}</Typography>
             <Typography paragraph>Price: £{price}</Typography>
             <Typography paragraph>Category: {category}</Typography>
           </CardContent>
