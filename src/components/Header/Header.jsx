@@ -90,7 +90,10 @@ const styles = theme => ({
     transition: "0.2s",
     display: "block",
     fontSize: "5vw",
-    color: "#000000"
+    color: "#000000",
+    [theme.breakpoints.down("md")]: {
+      display: "none"
+    }
   },
   menuButtonScroll: {
     marginRight: theme.spacing(2),
