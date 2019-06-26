@@ -16,11 +16,15 @@ const useStyles = makeStyles({
     marginTop: "30px"
   },
   title: {
-    fontSize: 30,
+    fontSize: 25,
     textAlign: "center"
   },
   pos: {
     marginBottom: 12
+  },
+  description: {
+    fontSize: 18,
+    textAlign: "center"
   }
 });
 
@@ -36,18 +40,23 @@ export default function SimpleCard() {
         <br />
         <Divider variant="middle" />
         <br />
-        <Typography className={classes.poss} color="textSecondary">
+        <Typography className={classes.title} variant="h6" noWrap>
+          <img src="../../icon.png" alt="3D Logo" height="80px" />
           3D PI
         </Typography>
         <br />
-        <Typography variant="body2" component="p">
-          This is a 3D Print market place where you can find superb, majestic,
-          incredible designs to print at home or with one of our suggested
-          vendours.
+        <Typography
+          variant="body2"
+          component="p"
+          className={classes.description}
+        >
+          3DPI is an e-commerce site, linking 3D image designers with owners of
+          3D printers and consumers looking to purchase superb, majestic,
+          incredible 3D-printed images.
           <br />
           <br />
-          The Team:
           <br />
+          Our team :
           <CardActions>
             <a
               href="https://github.com/cpbattrick"
