@@ -15,6 +15,8 @@ import LoginBox from "../Login/LoginBox";
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
 import { inherits } from "util";
+import Switch from "@material-ui/core/Switch";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
 
 const AdapterLink = React.forwardRef((props, ref) => (
   <Link innerRef={ref} {...props} />
@@ -65,8 +67,12 @@ const styles = theme => ({
   sectionDesktop: {
     display: "flex"
   },
-  logo: {
-    paddingLeft: "30px"
+  // logo: {
+  //   paddingLeft: "30px"
+  // },
+  darkHeader: {
+    backgroundColor: "black",
+    color: "white"
   },
   navbar: {
     transition: "0.2s",
@@ -75,7 +81,7 @@ const styles = theme => ({
   navbarScroll: {
     transition: "0.2s",
     position: "fixed",
-    backgroundColor: "transparent",
+    backgroundColor: "white",
     boxShadow: "none",
     border: 10,
     borderBottom: "1px solid rgb(0, 0, 0)"
@@ -176,6 +182,16 @@ class Header extends Component {
           >
             <ListItemText primary="About Us" />
           </ListItem>
+          <FormControlLabel
+            control={
+              <Switch
+                checked={this.props.darkMode}
+                onChange={this.props.changePalette}
+                value="dark"
+              />
+            }
+            label="Dark Mode"
+          />
         </List>
       </div>
     );
@@ -183,11 +199,14 @@ class Header extends Component {
     return (
       <div className={classes.grow}>
         <AppBar
-          className={
+          className={[
             this.state.isScrolled === false
               ? classes.navbar
-              : classes.navbarScroll
-          }
+              : classes.navbarScroll,
+            this.props.darkMode === true
+              ? classes.darkHeader
+              : classes.lightHeader
+          ].join(" ")}
           position="static"
         >
           <SwipeableDrawer
@@ -220,7 +239,7 @@ class Header extends Component {
               variant="h6"
               noWrap
             >
-              3D PI
+              3D
             </Typography>
             <img
               src="../../splashscreen.png"
