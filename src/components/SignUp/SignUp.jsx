@@ -120,6 +120,7 @@ class SignUp extends React.Component {
                 <Grid container spacing={2}>
                   <Grid item xs={12}>
                     <TextField
+                      style={{ backgroundColor: "white" }}
                       autoComplete="fname"
                       name="userFullnameInput"
                       variant="outlined"
@@ -134,6 +135,7 @@ class SignUp extends React.Component {
 
                   <Grid item xs={12}>
                     <TextField
+                      style={{ backgroundColor: "white" }}
                       variant="outlined"
                       required
                       fullWidth
@@ -146,6 +148,7 @@ class SignUp extends React.Component {
                   </Grid>
                   <Grid item xs={12}>
                     <TextField
+                      style={{ backgroundColor: "white" }}
                       variant="outlined"
                       required
                       fullWidth
@@ -157,6 +160,7 @@ class SignUp extends React.Component {
                   </Grid>
                   <Grid item xs={12}>
                     <TextField
+                      style={{ backgroundColor: "white" }}
                       variant="outlined"
                       required
                       fullWidth
@@ -171,12 +175,18 @@ class SignUp extends React.Component {
                     <FormControlLabel
                       control={
                         <Checkbox
+                          style={{ backgroundColor: "white" }}
                           checked={this.state.has3Dprinter}
                           color="primary"
                           onChange={this.handleInputChange}
                         />
                       }
-                      label="I have a 3D printer and want to provide printing services to others."
+                      label={
+                        <Typography style={{ paddingLeft: "20px" }}>
+                          I have a 3D printer and want to provide printing
+                          services to others.
+                        </Typography>
+                      }
                       name="has3Dprinter"
                     />
                   </Grid>
@@ -184,12 +194,17 @@ class SignUp extends React.Component {
                     <FormControlLabel
                       control={
                         <Checkbox
+                          style={{ backgroundColor: "white" }}
                           checked={this.state.is3Ddesigner}
                           color="primary"
                           onChange={this.handleInputChange}
                         />
                       }
-                      label="I am a 3D designer and want to sell images"
+                      label={
+                        <Typography style={{ paddingLeft: "20px" }}>
+                          I am a 3D designer and want to sell images
+                        </Typography>
+                      }
                       name="is3Ddesigner"
                     />
                   </Grid>
@@ -198,7 +213,7 @@ class SignUp extends React.Component {
                   type="submit"
                   fullWidth
                   variant="contained"
-                  color="primary"
+                  color="white"
                   className={classes.submit}
                 >
                   Sign Up
