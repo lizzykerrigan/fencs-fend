@@ -15,6 +15,8 @@ import LoginBox from "../Login/LoginBox";
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
 import { inherits } from "util";
+import Switch from "@material-ui/core/Switch";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
 
 const AdapterLink = React.forwardRef((props, ref) => (
   <Link innerRef={ref} {...props} />
@@ -23,6 +25,7 @@ const AdapterLink = React.forwardRef((props, ref) => (
 const storeScroll = () => {
   document.documentElement.dataset.scroll = window.scrollY;
 };
+
 
 const styles = theme => ({
   loggedIn: {
@@ -75,7 +78,7 @@ const styles = theme => ({
   navbarScroll: {
     transition: "0.2s",
     position: "fixed",
-    backgroundColor: "transparent",
+    backgroundColor: "white",
     boxShadow: "none",
     border: 10,
     borderBottom: "1px solid rgb(0, 0, 0)"
@@ -176,6 +179,16 @@ class Header extends Component {
           >
             <ListItemText primary="About Us" />
           </ListItem>
+          <FormControlLabel
+            control={
+              <Switch
+                checked={this.props.darkMode}
+                onChange={this.props.changePalette}
+                value="dark"
+              />
+            }
+            label="Dark Mode"
+          />
         </List>
       </div>
     );
