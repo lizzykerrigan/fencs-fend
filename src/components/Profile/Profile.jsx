@@ -25,12 +25,12 @@ const AdapterLink = React.forwardRef((props, ref) => (
 ));
 
 const useStyles = makeStyles(theme => ({
-  profilePic: { height: 200 },
+  profilePic: { height: 200, align: "centre" },
   username: { textTransform: "capitalize" },
   picContainer: {
-    width: "100%",
+    width: "75%",
     padding: 20,
-    margin: 10,
+    margin: "5%",
     alignContent: "space around"
   },
   card: {
@@ -41,9 +41,9 @@ const useStyles = makeStyles(theme => ({
   },
   imagesCard: {
     width: "90%",
-    marginLeft: 10,
+
     marginTop: 10,
-    // marginLeft: "5%",
+    marginLeft: "5%",
     // marginTop: "20px",
     // marginBottom: "30px",
     padding: 20
