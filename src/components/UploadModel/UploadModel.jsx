@@ -11,6 +11,7 @@ import { gql } from "apollo-boost";
 import { Mutation } from "react-apollo";
 import { navigate } from "@reach/router";
 import { withStyles } from "@material-ui/styles";
+import Swal from "sweetalert2";
 
 const styles = theme => ({
   "@global": {
@@ -85,6 +86,12 @@ class UploadModel extends React.Component {
                   insert_images({
                     variables: { newImage }
                   }).then(data => {
+                    Swal.fire({
+                      type: "success",
+                      title: "Your image has been successfully uploaded!",
+                      showConfirmButton: false,
+                      timer: 3200
+                    });
                     navigate("/");
                   });
                 }}

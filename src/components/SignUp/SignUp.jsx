@@ -13,6 +13,7 @@ import Container from "@material-ui/core/Container";
 import { gql } from "apollo-boost";
 import { Mutation } from "react-apollo";
 import { navigate } from "@reach/router";
+import Swal from "sweetalert2";
 
 const styles = theme => ({
   "@global": {
@@ -105,6 +106,13 @@ class SignUp extends React.Component {
                       newUser: newUser
                     }
                   }).then(data => {
+                    Swal.fire({
+                      type: "success",
+                      title:
+                        "Your account has been successfully created, please login first  !",
+                      showConfirmButton: false,
+                      timer: 3200
+                    });
                     navigate("/");
                   });
                 }}
