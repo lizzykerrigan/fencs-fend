@@ -36,7 +36,7 @@ const useStyles = makeStyles(theme => ({
   card: {
     width: "90%",
     marginLeft: "5%",
-    marginTop: "20px",
+    marginTop: "80px",
     marginBottom: "30px"
   },
   imagesCard: {
@@ -135,6 +135,7 @@ const Profile = props => {
                     display_name
                     thumbnail_url
                     likes
+                    image_id
                         }
                       }
                       `}
