@@ -16,7 +16,7 @@ const client = new ApolloClient({
 const theme = createMuiTheme({
   palette: {
     primary: {
-      main: orange[700]
+      main: "#f46524"
     },
     secondary: {
       main: yellow[500]
