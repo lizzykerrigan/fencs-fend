@@ -5,7 +5,7 @@ import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import "typeface-roboto";
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core";
-import { orange, yellow, purple } from "@material-ui/core/colors";
+import { yellow, purple } from "@material-ui/core/colors";
 import { ApolloProvider } from "react-apollo";
 import ApolloClient from "apollo-boost";
 import "../node_modules/@fortawesome/fontawesome-free/css/all.css";

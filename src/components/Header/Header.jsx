@@ -14,15 +14,10 @@ import { Link } from "@reach/router";
 import LoginBox from "../Login/LoginBox";
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
-import { inherits } from "util";
 
 const AdapterLink = React.forwardRef((props, ref) => (
   <Link innerRef={ref} {...props} />
 ));
-
-const storeScroll = () => {
-  document.documentElement.dataset.scroll = window.scrollY;
-};
 
 const styles = theme => ({
   loggedIn: {
