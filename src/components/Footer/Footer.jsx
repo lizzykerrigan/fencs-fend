@@ -35,7 +35,12 @@ const useStyles = makeStyles(theme => ({
     borderTop: "1px hidden rgb(0, 0, 0)",
     padding: theme.spacing(2),
     marginTop: "auto",
-    backgroundColor: "#e0e0e0"
+    backgroundColor: "#e0e0e0",
+    textAlign: "center",
+    position: "fixed",
+    left: 0,
+    bottom: 0,
+    width: "100%"
   }
 }));
 
