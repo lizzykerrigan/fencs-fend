@@ -190,6 +190,7 @@ class Header extends Component {
                 value="dark"
               />
             }
+            labelPlacement="start"
             label="Dark Mode"
           />
         </List>
