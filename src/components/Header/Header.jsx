@@ -14,6 +14,7 @@ import { Link } from "@reach/router";
 import LoginBox from "../Login/LoginBox";
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
+import { inherits } from "util";
 
 const AdapterLink = React.forwardRef((props, ref) => (
   <Link innerRef={ref} {...props} />
@@ -69,7 +70,7 @@ const styles = theme => ({
     position: "fixed"
   },
   navbarScroll: {
-    transition: "0.4s",
+    transition: "0.2s",
     position: "fixed",
     backgroundColor: "transparent",
     boxShadow: "none",
@@ -84,7 +85,17 @@ const styles = theme => ({
   },
   menuButtonScroll: {
     marginRight: theme.spacing(2),
-    color: "#000000"
+    color: "#000000",
+    transition: "0.4s",
+    "&:hover": {
+      backgroundColor: "#ffa726"
+    }
+  },
+  logoutScoll: {
+    transition: "0.4s",
+    "&:hover": {
+      backgroundColor: "#ffa726"
+    }
   }
 });
 
@@ -186,7 +197,11 @@ class Header extends Component {
           <Toolbar>
             <IconButton
               edge="start"
-              className={classes.menuButton}
+              className={
+                this.state.isScrolled === false
+                  ? classes.menuButton
+                  : classes.menuButtonScroll
+              }
               color="inherit"
               aria-label="Open drawer"
               onClick={toggleDrawer("left", true)}
@@ -229,7 +244,14 @@ class Header extends Component {
                     Logged in as:
                     <strong> {`${this.props.loggedInUser}`}</strong>
                   </Typography>
-                  <Button onClick={this.props.logoutUser}>
+                  <Button
+                    className={
+                      this.state.isScrolled === false
+                        ? classes.logout
+                        : classes.loggedInScroll
+                    }
+                    onClick={this.props.logoutUser}
+                  >
                     <Typography>Logout</Typography>
                   </Button>
                   <IconButton
