@@ -1,6 +1,7 @@
 import "./App.css";
 import React, { Component } from "react";
 import Header from "./components/Header/Header";
+import Footer from "./components/Footer/Footer";
 import CategoriesPage from "./components/CategoriesPage/CategoriesPage";
 import { Router } from "@reach/router";
 import AboutPage from "./components/AboutPage/AboutPage";
@@ -36,6 +37,7 @@ export default class App extends Component {
           loggedInUser={this.state.loggedInUser}
           logoutUser={this.logoutUser}
         />
+
         <Router>
           <HomePage path="/" />
           <CategoriesPage path="/categories" />
@@ -48,6 +50,7 @@ export default class App extends Component {
           <Profile path="/:username" loggedInUser={this.state.loggedInUser} />
           <UploadModel path="/upload_model" />
         </Router>
+        <Footer />
       </div>
     );
   }
