@@ -13,7 +13,8 @@ const useStyles = makeStyles({
     width: "80%",
     marginLeft: "auto",
     marginRight: "auto",
-    marginTop: "30px"
+    marginTop: "30px",
+    background: "linear-gradient(45deg, #FE6B8B 30%, #FF8E53 50%)"
   },
   title: {
     fontSize: 25,
@@ -25,6 +26,20 @@ const useStyles = makeStyles({
   description: {
     fontSize: 18,
     textAlign: "center"
+  },
+  root: {
+    background: "#424242",
+    border: 0,
+    borderRadius: 3,
+    boxShadow: "0 3px 5px 2px rgba(255, 105, 135, .3)",
+    color: "white",
+    height: 48,
+    padding: "0 20px"
+  },
+  center: {
+    marginLeft: "auto",
+    marginRight: "auto",
+    width: "40%"
   }
 });
 
@@ -32,7 +47,7 @@ export default function SimpleCard() {
   const classes = useStyles();
 
   return (
-    <Card className={classes.card}>
+    <Card>
       <CardContent>
         <Typography className={classes.title} variant="h5" component="h2">
           About us
@@ -52,20 +67,22 @@ export default function SimpleCard() {
         >
           3DPI is an e-commerce site, linking 3D image designers with owners of
           3D printers and consumers looking to purchase superb, majestic,
-          incredible 3D-printed images.
+          incredible 3D-printed images. Our team :
           <br />
           <br />
           <br />
-          Our team :
-          <CardActions>
+          <CardActions className={classes.center}>
             <a
               href="https://github.com/cpbattrick"
               target="_blank"
               rel="noopener noreferrer"
             >
               {" "}
-              <i class="fab fa-github" />
-              <Button>Charles</Button>
+              <Button className={classes.root}>
+                {" "}
+                <i class="fab fa-github fa-2x" />
+                -Charles
+              </Button>
             </a>
             <br />
             <a
@@ -74,8 +91,11 @@ export default function SimpleCard() {
               rel="noopener noreferrer"
             >
               {" "}
-              <i class="fab fa-github" />
-              <Button>Nick</Button>
+              <Button className={classes.root}>
+                {" "}
+                <i class="fab fa-github fa-2x" />
+                -Nick
+              </Button>
             </a>
             <br />
             <a
@@ -84,8 +104,11 @@ export default function SimpleCard() {
               rel="noopener noreferrer"
             >
               {" "}
-              <i class="fab fa-github" />
-              <Button>Elizabeth</Button>
+              <Button className={classes.root}>
+                {" "}
+                <i class="fab fa-github fa-2x" />
+                -Elizabeth
+              </Button>
             </a>
             <br />
             <a
@@ -94,8 +117,11 @@ export default function SimpleCard() {
               rel="noopener noreferrer"
             >
               {" "}
-              <i class="fab fa-github" />
-              <Button>Fraser</Button>
+              <Button className={classes.root}>
+                {" "}
+                <i class="fab fa-github fa-2x" />
+                -Fraser
+              </Button>
             </a>
             <br />
             <a
@@ -104,8 +130,10 @@ export default function SimpleCard() {
               rel="noopener noreferrer"
             >
               {" "}
-              <i class="fab fa-github" />
-              <Button>Shiva</Button>
+              <Button className={classes.root}>
+                {" "}
+                <i class="fab fa-github fa-2x" /> -Shiva
+              </Button>
             </a>
           </CardActions>
         </Typography>
@@ -113,6 +141,3 @@ export default function SimpleCard() {
     </Card>
   );
 }
-
-// Battrick, Fraser Kemp, Elizabeth Kerrigan, Nick Etherington,
-//   Shiva Heydaribeni
