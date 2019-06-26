@@ -26,7 +26,6 @@ const storeScroll = () => {
   document.documentElement.dataset.scroll = window.scrollY;
 };
 
-
 const styles = theme => ({
   loggedIn: {
     marginTop: 11,
@@ -70,6 +69,10 @@ const styles = theme => ({
   },
   logo: {
     paddingLeft: "30px"
+  },
+  darkHeader: {
+    backgroundColor: "black",
+    color: "white"
   },
   navbar: {
     transition: "0.2s",
@@ -196,11 +199,14 @@ class Header extends Component {
     return (
       <div className={classes.grow}>
         <AppBar
-          className={
+          className={[
             this.state.isScrolled === false
               ? classes.navbar
-              : classes.navbarScroll
-          }
+              : classes.navbarScroll,
+            this.props.darkMode === true
+              ? classes.darkHeader
+              : classes.lightHeader
+          ].join(" ")}
           position="static"
         >
           <SwipeableDrawer
