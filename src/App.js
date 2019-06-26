@@ -37,6 +37,7 @@ const THEME = createMuiTheme({
   },
   typography: {
     fontFamily: [
+      "IBM Plex Sans",
       "-apple-system",
       "BlinkMacSystemFont",
       '"Segoe UI"',

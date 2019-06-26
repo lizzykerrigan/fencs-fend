@@ -67,9 +67,9 @@ const styles = theme => ({
   sectionDesktop: {
     display: "flex"
   },
-  logo: {
-    paddingLeft: "30px"
-  },
+  // logo: {
+  //   paddingLeft: "30px"
+  // },
   darkHeader: {
     backgroundColor: "black",
     color: "white"
@@ -239,7 +239,7 @@ class Header extends Component {
               variant="h6"
               noWrap
             >
-              3D PI
+              3D
             </Typography>
             <img
               src="../../splashscreen.png"
