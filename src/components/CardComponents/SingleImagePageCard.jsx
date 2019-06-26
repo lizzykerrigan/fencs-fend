@@ -16,11 +16,15 @@ import MoreVertIcon from "@material-ui/icons/MoreVert";
 import ModelCard from "../3dModel/3dModelCard";
 
 const useStyles = makeStyles(theme => ({
+  voted: {
+    color: red[500]
+  },
   card: {
     padding: 15,
     marginTop: 20,
     width: "80%",
-    marginLeft: "8%"
+    marginLeft: "8%",
+    backgroundColor: "whitesmoke"
   },
   likes: {
     marginBottom: 0,
@@ -83,11 +87,17 @@ const SingleImagePageCard = props => {
           </Typography>
         </CardContent>
         <CardActions disableSpacing>
-          <IconButton aria-label="Add to favorites">
+          <IconButton
+            className={props.voteChange === 1 && classes.voted}
+            onClick={() => {
+              props.vote(props.id, 1);
+            }}
+            aria-label="Add to favorites"
+          >
             <FavoriteIcon />
           </IconButton>
           <Typography className={classes.likes} paragraph>
-            {likes}
+            {likes + props.voteChange}
           </Typography>
           <IconButton
             className={clsx(classes.expand, {
@@ -102,6 +112,7 @@ const SingleImagePageCard = props => {
         </CardActions>
         <Collapse in={expanded} timeout="auto" unmountOnExit>
           <CardContent>
+
             <Typography paragraph>
               <i class="fab fa-sketch fa-2x" /> {posted_by}
             </Typography>
@@ -111,6 +122,8 @@ const SingleImagePageCard = props => {
             <Typography paragraph>
               <i class="far fa-flag fa-2x" />.{category}
             </Typography>
+            
+
           </CardContent>
         </Collapse>
       </Card>

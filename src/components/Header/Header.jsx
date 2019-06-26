@@ -38,7 +38,11 @@ const useStyles = makeStyles(theme => ({
     marginRight: theme.spacing(2)
   },
   title: {
-    display: "block"
+    display: "block",
+    fontSize: "5vw",
+    [theme.breakpoints.down("md")]: {
+      display: "none"
+    }
   },
 
   inputRoot: {
@@ -54,6 +58,9 @@ const useStyles = makeStyles(theme => ({
   },
   sectionDesktop: {
     display: "flex"
+  },
+  logo: {
+    paddingLeft: "30px"
   }
 }));
 
@@ -139,10 +146,14 @@ const Header = props => {
             <MenuIcon />
           </IconButton>
           <Typography className={classes.title} variant="h6" noWrap>
-            <img src="../../icon.png" alt="3D Logo" height="80px" />
             3D PI
           </Typography>
-
+          <img
+            src="../../splashscreen.png"
+            alt="3D PI Logo"
+            height="80px"
+            className={classes.logo}
+          />
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
             {!props.loggedInUser && (

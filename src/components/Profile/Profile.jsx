@@ -25,12 +25,12 @@ const AdapterLink = React.forwardRef((props, ref) => (
 ));
 
 const useStyles = makeStyles(theme => ({
-  profilePic: { height: 200 },
+  profilePic: { height: 200, align: "centre" },
   username: { textTransform: "capitalize" },
   picContainer: {
-    width: "100%",
+    width: "75%",
     padding: 20,
-    margin: 10,
+    margin: "5%",
     alignContent: "space around"
   },
   card: {
@@ -41,9 +41,9 @@ const useStyles = makeStyles(theme => ({
   },
   imagesCard: {
     width: "90%",
-    marginLeft: 10,
+
     marginTop: 10,
-    // marginLeft: "5%",
+    marginLeft: "5%",
     // marginTop: "20px",
     // marginBottom: "30px",
     padding: 20
@@ -78,7 +78,7 @@ const Profile = props => {
         >
           {({ loading, error, data }) => {
             if (loading) return <p>Loading...</p>;
-            if (error) return <h1>{error.message}</h1>;;
+            if (error) return <h1>{error.message}</h1>;
             const user = data.users[0];
             return (
               <Card className={classes.card}>
@@ -105,23 +105,17 @@ const Profile = props => {
                         <br />
                         <Divider variant="middle" />
                         <br />
+                        <AccessTime className={classes.icon} />
                         <Typography>
                           {" "}
-                          <AccessTime />
                           {`${format(user.date_joined, "Do MMMM YYYY")}`}
                         </Typography>
                         <br />
-                        <Typography>
-                          {" "}
-                          <Email />
-                          {` ${user.email_address}`}
-                        </Typography>
+                        <Email className={classes.icon} />
+                        <Typography> {` ${user.email_address}`}</Typography>
                         <br />
-                        <Typography>
-                          {" "}
-                          <Person />
-                          {` ${user.fullname}`}
-                        </Typography>
+                        <Person className={classes.icon} />
+                        <Typography> {` ${user.fullname}`}</Typography>
                       </Grid>
                     </CardContent>
                   </Grid>
@@ -146,7 +140,7 @@ const Profile = props => {
                     >
                       {({ loading, error, data }) => {
                         if (loading) return <p>Loading...</p>;
-                        if (error) return <h1>{error.message}</h1>;;
+                        if (error) return <h1>{error.message}</h1>;
 
                         return data.images.map((image, i) => (
                           <HomePageCard key={`userimage${i}`} image={image} />
