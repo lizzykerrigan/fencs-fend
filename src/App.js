@@ -1,6 +1,7 @@
 import "./App.css";
 import React, { Component } from "react";
 import Header from "./components/Header/Header";
+import Footer from "./components/Footer/Footer";
 import CategoriesPage from "./components/CategoriesPage/CategoriesPage";
 import { Router } from "@reach/router";
 import AboutPage from "./components/AboutPage/AboutPage";
@@ -97,10 +98,23 @@ export default class App extends Component {
   render() {
     console.log(this.activePalette);
     return (
-      <MuiThemeProvider theme={THEME}>
+
+    <MuiThemeProvider theme={THEME}>
         <div style={{ backgroundColor: this.activePalette.backgroundColor, color: this.activePalette.textColor }}>
           {/* <ModelCard /> */}
-          <Header
+        {/* <ModelCard /> */}
+        <Header
+          client={this.props.client}
+          loginUser={this.loginUser}
+          loggedInUser={this.state.loggedInUser}
+          logoutUser={this.logoutUser}
+        />
+
+        <Router>
+          <HomePage path="/" />
+          <CategoriesPage path="/categories" />
+          <SingleImagePage
+
             client={this.props.client}
             loginUser={this.loginUser}
             loggedInUser={this.state.loggedInUser}
@@ -108,20 +122,16 @@ export default class App extends Component {
             changePalette={this.changePalette}
             darkMode={this.state.darkMode}
           />
-          <Router>
-            <HomePage path="/" />
-            <CategoriesPage path="/categories" />
-            <SingleImagePage
-              client={this.props.client}
-              path="/images/:image_id"
-            />
-            <AboutPage path="/about_us" />
-            <SignUp path="/sign_up" loginUser={this.loginUser} />
-            <Profile path="/:username" loggedInUser={this.state.loggedInUser} />
-            <UploadModel path="/upload_model" />
-          </Router>
-        </div>
-      </MuiThemeProvider>
+
+          <AboutPage path="/about_us" />
+          <SignUp path="/sign_up" loginUser={this.loginUser} />
+          <Profile path="/:username" loggedInUser={this.state.loggedInUser} />
+          <UploadModel path="/upload_model" />
+        </Router>
+        <Footer />
+      </div>
+        </MuiThemeProvider>
+
     );
   }
 }
