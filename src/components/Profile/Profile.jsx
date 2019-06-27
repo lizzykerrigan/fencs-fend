@@ -26,11 +26,19 @@ const AdapterLink = React.forwardRef((props, ref) => (
 
 const useStyles = makeStyles(theme => ({
   profilePic: { height: 200, align: "centre" },
-  username: { textTransform: "capitalize" },
+  username: {
+    textTransform: "capitalize",
+    textDecoration: "underline",
+    width: "40%",
+    marginLeft: "auto",
+    marginRight: "auto"
+  },
   picContainer: {
-    width: "75%",
+    width: "16.8%",
     padding: 20,
-    margin: "5%",
+    marginLeft: "auto",
+    marginRight: "auto",
+    marginTop: 80,
     alignContent: "space around"
   },
   card: {
@@ -44,13 +52,16 @@ const useStyles = makeStyles(theme => ({
 
     marginTop: 10,
     marginLeft: "5%",
-    // marginTop: "20px",
     marginBottom: "30px",
     marginRight: "5%",
     padding: 20
   },
   userInfo: {
-    margin: 20
+    width: "40%",
+    margin: 20,
+    marginLeft: "auto",
+    marginRight: "auto",
+    marginTop: 80
   }
 }));
 
@@ -82,9 +93,9 @@ const Profile = props => {
             if (error) return <h1>{error.message}</h1>;
             const user = data.users[0];
             return (
-              <Card className={classes.card}>
+              <>
                 <Grid container spacing={3}>
-                  <Grid item md={3} sm={9}>
+                  <Grid item xs={12}>
                     <Card className={classes.picContainer}>
                       <img
                         src={user.avatar}
@@ -94,7 +105,8 @@ const Profile = props => {
                       <Rating initialRating={user.rating} readonly />
                     </Card>
                   </Grid>
-                  <Grid className={classes.details} item md={9} sm={11}>
+
+                  <Grid className={classes.details} item xs={12}>
                     <CardContent>
                       <Grid className={classes.userInfo}>
                         <Typography className={classes.username} variant="h5">
@@ -127,8 +139,11 @@ const Profile = props => {
                       user.username
                     }'s Designs`}</Typography>
                     <br />
-                    <Query
-                      query={gql`
+                    <Grid container spacing={2}>
+                      <Grid item xs={12}>
+                        <Grid container justify="center" spacing={2}>
+                          <Query
+                            query={gql`
                       {
                         images(where: {posted_by: {_eq: "${user.username}"}}) {
                             title
@@ -139,19 +154,25 @@ const Profile = props => {
                         }
                       }
                       `}
-                    >
-                      {({ loading, error, data }) => {
-                        if (loading) return <p>Loading...</p>;
-                        if (error) return <h1>{error.message}</h1>;
+                          >
+                            {({ loading, error, data }) => {
+                              if (loading) return <p>Loading...</p>;
+                              if (error) return <h1>{error.message}</h1>;
 
-                        return data.images.map((image, i) => (
-                          <HomePageCard key={`userimage${i}`} image={image} />
-                        ));
-                      }}
-                    </Query>
+                              return data.images.map((image, i) => (
+                                <HomePageCard
+                                  key={`userimage${i}`}
+                                  image={image}
+                                />
+                              ));
+                            }}
+                          </Query>
+                        </Grid>
+                      </Grid>
+                    </Grid>
                   </CardContent>
                 </Card>
-              </Card>
+              </>
             );
           }}
         </Query>

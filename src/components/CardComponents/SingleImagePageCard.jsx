@@ -1,4 +1,5 @@
 import React from "react";
+import SimpleCard from "../CardComponents/usersCard";
 import { makeStyles } from "@material-ui/core/styles";
 import clsx from "clsx";
 import Card from "@material-ui/core/Card";
@@ -14,6 +15,15 @@ import FavoriteIcon from "@material-ui/icons/Favorite";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import Button from "@material-ui/core/Button";
 import ModelCard from "../3dModel/3dModelCard";
+import { gql } from "apollo-boost";
+import Grid from "@material-ui/core/Grid";
+import { Query } from "react-apollo";
+import { Link } from "@reach/router";
+import icon from "../UploadModel/icon.png";
+
+const AdapterLink = React.forwardRef((props, ref) => (
+  <Link innerRef={ref} {...props} />
+));
 
 const useStyles = makeStyles(theme => ({
   voted: {
@@ -45,7 +55,26 @@ const useStyles = makeStyles(theme => ({
     transform: "rotate(180deg)"
   },
   avatar: {
-    backgroundColor: red[500]
+    backgroundColor: theme.palette.secondary.main
+  },
+  contactDesigner: {
+    "&:hover": {
+      backgroundColor: "#f57c00"
+    }
+  },
+  themeBtn: {
+    "&:hover": {
+      backgroundColor: "#f57c00",
+      transition: "0.4s",
+      color: "white"
+    }
+  },
+  themeDesc: {
+    marginLeft: 6
+  },
+  printS: {
+    marginLeft: 20,
+    marginBottom: 15
   }
 }));
 
@@ -73,9 +102,15 @@ const SingleImagePageCard = props => {
     <div className={classes.cardWrapper}>
       <Card className={classes.card}>
         <CardHeader
-          avatar={<Avatar aria-label="Recipe" className={classes.avatar} />}
+          avatar={
+            <Avatar className={classes.avatar} img src={icon} alt="logo" />
+          }
           action={
-            <Button>
+            <Button
+              className={classes.contactDesigner}
+              component={AdapterLink}
+              to={`/contact/${posted_by}`}
+            >
               <Typography>Contact Designer</Typography>
             </Button>
           }
@@ -85,23 +120,27 @@ const SingleImagePageCard = props => {
         <ModelCard background={background} image={props.image} />
         <CardContent>
           <div>
-            <Typography>Themes:</Typography>
+            <Typography className={classes.themeDesc}>Themes:</Typography>
             <Button
+              className={classes.themeBtn}
               onClick={() => setBackground("https://i.imgur.com/8J6rlJZ.jpg")}
             >
               <Typography>NC Lecture Room</Typography>
             </Button>
             <Button
+              className={classes.themeBtn}
               onClick={() => setBackground("https://i.imgur.com/fcpVySI.jpg")}
             >
               <Typography>NC Workspace</Typography>
             </Button>
             <Button
+              className={classes.themeBtn}
               onClick={() => setBackground("https://i.imgur.com/m4mMb0F.jpg")}
             >
               <Typography>Print Works</Typography>
             </Button>
             <Button
+              className={classes.themeBtn}
               onClick={() => setBackground("https://i.imgur.com/Uyyv1fo.jpg")}
             >
               <Typography>Print Works Inside</Typography>
@@ -113,8 +152,8 @@ const SingleImagePageCard = props => {
               <Typography>Pilcrow</Typography>
             </Button>
           </div>
-          <Typography variant="body2" color="textSecondary" component="p">
-            {description}
+          <Typography className={classes.themeDesc}>
+            Description: {description}
           </Typography>
         </CardContent>
         <CardActions disableSpacing>
@@ -144,14 +183,44 @@ const SingleImagePageCard = props => {
         <Collapse in={expanded} timeout="auto" unmountOnExit>
           <CardContent>
             <Typography paragraph>
-              <i class="fab fa-sketch fa-2x" /> {posted_by}
+              <strong>Designer:</strong> {posted_by}
             </Typography>
             <Typography paragraph>
-              <i class="far fa-money-bill-alt fa-2x " /> .£{price}
+              <strong>3D Design price:</strong> £{price}
             </Typography>
             <Typography paragraph>
-              <i class="far fa-flag fa-2x" />.{category}
+              <strong>Category: </strong>
+              {category}
             </Typography>
+            <Typography className={classes.printS}>
+              <strong>Printing Services:</strong>
+            </Typography>
+            <Grid container spacing={2}>
+              <Grid item xs={12}>
+                <Grid container justify="center" spacing={2}>
+                  <Query
+                    query={gql`
+                      {
+                        users(where: { owns_printer: { _eq: true } }) {
+                          username
+                          location
+                          rating
+                          owns_printer
+                          date_joined
+                        }
+                      }
+                    `}
+                  >
+                    {({ loading, error, data }) => {
+                      if (loading) return <p>Loading...</p>;
+                      if (error) return <h1>{error.message}</h1>;
+
+                      return data.users.map(user => <SimpleCard user={user} />);
+                    }}
+                  </Query>
+                </Grid>
+              </Grid>
+            </Grid>
           </CardContent>
         </Collapse>
       </Card>

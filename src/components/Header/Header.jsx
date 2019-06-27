@@ -6,6 +6,7 @@ import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
 import MenuIcon from "@material-ui/icons/Menu";
 import AccountCircle from "@material-ui/icons/AccountCircle";
+import ShoppingCart from "@material-ui/icons/ShoppingCart";
 import SwipeableDrawer from "@material-ui/core/SwipeableDrawer";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
@@ -14,7 +15,6 @@ import { Link } from "@reach/router";
 import LoginBox from "../Login/LoginBox";
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
-import { inherits } from "util";
 import Switch from "@material-ui/core/Switch";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 
@@ -96,14 +96,27 @@ const styles = theme => ({
     color: "#000000",
     transition: "0.4s",
     "&:hover": {
-      backgroundColor: "#ff9800"
+      backgroundColor: "#f57c00"
     }
   },
   logoutScoll: {
     transition: "0.4s",
     "&:hover": {
-      backgroundColor: "#ffa726"
+      backgroundColor: "#f57c00"
     }
+  },
+  loggedInScroll: {
+    marginTop: 11,
+    marginRight: 10,
+    color: "Black"
+  },
+  profileButton: {
+    color: "white",
+    marginRight: 3
+  },
+  profileButtonScroll: {
+    color: "Black",
+    marginRight: 3
   }
 });
 
@@ -267,27 +280,42 @@ class Header extends Component {
                   justify="center"
                   alignItems="stretch"
                 >
-                  <Typography className={classes.loggedIn}>
+                  <Typography
+                    className={
+                      this.state.isScrolled === false
+                        ? classes.loggedIn
+                        : classes.loggedInScroll
+                    }
+                  >
                     Logged in as:
                     <strong> {`${this.props.loggedInUser}`}</strong>
                   </Typography>
-                  <Button
-                    className={
-                      this.state.isScrolled === false
-                        ? classes.logout
-                        : classes.loggedInScroll
-                    }
-                    onClick={this.props.logoutUser}
-                  >
+                  <Button onClick={this.props.logoutUser}>
                     <Typography>Logout</Typography>
                   </Button>
+                  <IconButton
+                    edge="end"
+                    aria-label="Account of current user"
+                    color="inherit"
+                    className={
+                      this.state.isScrolled === false
+                        ? classes.profileButton
+                        : classes.profileButtonScroll
+                    }
+                  >
+                    <ShoppingCart />
+                  </IconButton>
                   <IconButton
                     component={AdapterLink}
                     to={`/${this.props.loggedInUser}`}
                     edge="end"
                     aria-label="Account of current user"
                     color="inherit"
-                    className={classes.profileButton}
+                    className={
+                      this.state.isScrolled === false
+                        ? classes.profileButton
+                        : classes.profileButtonScroll
+                    }
                   >
                     <AccountCircle />
                   </IconButton>

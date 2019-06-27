@@ -47,6 +47,7 @@ export default class singleImagePage extends Component {
               image={image_by_pk}
               voteChange={voteChange}
               voteMade={this.voteMade}
+              client={this.props.client}
             />
           </>
         )}
