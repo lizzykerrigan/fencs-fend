@@ -107,7 +107,7 @@ const styles = theme => ({
   loggedInScroll: {
     marginTop: 11,
     marginRight: 10,
-    color: "#f57c00"
+    color: "Black"
   },
   profileButtonScroll: {
     color: "Black"

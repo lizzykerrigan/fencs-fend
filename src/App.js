@@ -10,6 +10,7 @@ import SingleImagePage from "./components/imagePage/SingleImagePage";
 import Profile from "./components/Profile/Profile";
 import UploadModel from "./components/UploadModel/UploadModel";
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core";
+import Contact from "./components/Contact/Contact";
 
 const THEME = createMuiTheme({
   palette: {
@@ -123,6 +124,7 @@ export default class App extends Component {
             <SignUp path="/sign_up" loginUser={this.loginUser} />
             <Profile path="/:username" loggedInUser={this.state.loggedInUser} />
             <UploadModel path="/upload_model" />
+            <Contact path="/contact/:username" />
           </Router>
         </div>
       </MuiThemeProvider>

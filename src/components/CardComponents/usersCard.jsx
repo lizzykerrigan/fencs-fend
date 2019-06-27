@@ -5,6 +5,11 @@ import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
+import { Link } from "@reach/router";
+
+const AdapterLink = React.forwardRef((props, ref) => (
+  <Link innerRef={ref} {...props} />
+));
 
 const useStyles = makeStyles({
   card: {
@@ -49,7 +54,12 @@ export default function SimpleCard(props) {
         </Typography>
       </CardContent>
       <CardActions>
-        <Button className={classes.contactButton} size="small">
+        <Button
+          className={classes.contactButton}
+          size="small"
+          component={AdapterLink}
+          to={`/contact/${user.username}`}
+        >
           Contact User
         </Button>
       </CardActions>

@@ -18,6 +18,11 @@ import ModelCard from "../3dModel/3dModelCard";
 import { gql } from "apollo-boost";
 import Grid from "@material-ui/core/Grid";
 import { Query } from "react-apollo";
+import { Link } from "@reach/router";
+
+const AdapterLink = React.forwardRef((props, ref) => (
+  <Link innerRef={ref} {...props} />
+));
 
 const useStyles = makeStyles(theme => ({
   voted: {
@@ -68,7 +73,7 @@ const useStyles = makeStyles(theme => ({
   },
   printS: {
     marginLeft: 20,
-    marginBottom: 5
+    marginBottom: 15
   }
 }));
 
@@ -98,7 +103,11 @@ const SingleImagePageCard = props => {
         <CardHeader
           avatar={<Avatar aria-label="Recipe" className={classes.avatar} />}
           action={
-            <Button className={classes.contactDesigner}>
+            <Button
+              className={classes.contactDesigner}
+              component={AdapterLink}
+              to={`/contact/${posted_by}`}
+            >
               <Typography>Contact Designer</Typography>
             </Button>
           }
