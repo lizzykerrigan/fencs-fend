@@ -40,12 +40,13 @@ const useStyles = makeStyles(theme => ({
     marginBottom: "30px"
   },
   imagesCard: {
-    width: "90%",
+    width: "85%",
 
     marginTop: 10,
     marginLeft: "5%",
     // marginTop: "20px",
-    // marginBottom: "30px",
+    marginBottom: "30px",
+    marginRight: "5%",
     padding: 20
   },
   userInfo: {

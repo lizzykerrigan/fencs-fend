@@ -99,6 +99,7 @@ class UploadModel extends React.Component {
                 <Grid container spacing={2}>
                   <Grid item xs={12}>
                     <TextField
+                      style={{ backgroundColor: "white" }}
                       name="title"
                       variant="outlined"
                       required
@@ -111,6 +112,7 @@ class UploadModel extends React.Component {
                   </Grid>
                   <Grid item xs={12}>
                     <TextField
+                      style={{ backgroundColor: "white" }}
                       variant="outlined"
                       required
                       fullWidth
@@ -122,6 +124,7 @@ class UploadModel extends React.Component {
                   </Grid>
                   <Grid item xs={12}>
                     <TextField
+                      style={{ backgroundColor: "white" }}
                       variant="outlined"
                       required
                       fullWidth
@@ -133,6 +136,7 @@ class UploadModel extends React.Component {
                   </Grid>
                   <Grid item xs={12}>
                     <TextField
+                      style={{ backgroundColor: "white" }}
                       variant="outlined"
                       required
                       fullWidth
@@ -144,6 +148,7 @@ class UploadModel extends React.Component {
                   </Grid>
                   <Grid item xs={12}>
                     <TextField
+                      style={{ backgroundColor: "white" }}
                       variant="outlined"
                       required
                       fullWidth
@@ -155,6 +160,7 @@ class UploadModel extends React.Component {
                   </Grid>
                   <Grid item xs={12}>
                     <TextField
+                      style={{ backgroundColor: "white" }}
                       variant="outlined"
                       required
                       fullWidth
@@ -166,6 +172,7 @@ class UploadModel extends React.Component {
                   </Grid>
                   <Grid item xs={12}>
                     <TextField
+                      style={{ backgroundColor: "white" }}
                       variant="outlined"
                       required
                       fullWidth
@@ -177,6 +184,7 @@ class UploadModel extends React.Component {
                   </Grid>
                   <Grid item xs={12}>
                     <TextField
+                      style={{ backgroundColor: "white" }}
                       variant="outlined"
                       required
                       fullWidth

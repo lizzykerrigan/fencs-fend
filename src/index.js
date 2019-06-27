@@ -5,7 +5,7 @@ import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import "typeface-roboto";
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core";
-import { orange, yellow, purple } from "@material-ui/core/colors";
+import { yellow, purple } from "@material-ui/core/colors";
 import { ApolloProvider } from "react-apollo";
 import ApolloClient from "apollo-boost";
 import "../node_modules/@fortawesome/fontawesome-free/css/all.css";
@@ -14,40 +14,12 @@ const client = new ApolloClient({
   uri: "https://fencs-back-end.herokuapp.com/v1/graphql"
 });
 
-const theme = createMuiTheme({
-  palette: {
-    primary: {
-      main: "#f46524"
-    },
-    secondary: {
-      main: yellow[500]
-    },
-    error: {
-      main: purple[700]
-    }
-  },
-  typography: {
-    fontFamily: [
-      "-apple-system",
-      "BlinkMacSystemFont",
-      '"Segoe UI"',
-      "Roboto",
-      '"Helvetica Neue"',
-      "Arial",
-      "sans-serif",
-      '"Apple Color Emoji"',
-      '"Segoe UI Emoji"',
-      '"Segoe UI Symbol"'
-    ].join(",")
-  }
-});
+
 
 ReactDOM.render(
-  <MuiThemeProvider theme={theme}>
     <ApolloProvider client={client}>
       <App client={client} />
-    </ApolloProvider>
-  </MuiThemeProvider>,
+    </ApolloProvider>,
   document.getElementById("root")
 );
 

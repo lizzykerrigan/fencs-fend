@@ -10,10 +10,54 @@ import SignUp from "./components/SignUp/SignUp";
 import SingleImagePage from "./components/imagePage/SingleImagePage";
 import Profile from "./components/Profile/Profile";
 import UploadModel from "./components/UploadModel/UploadModel";
+import { MuiThemeProvider, createMuiTheme } from "@material-ui/core";
+import { orange, yellow, purple } from "@material-ui/core/colors";
+
+const THEME = createMuiTheme({
+  palette: {
+    list: ["primary", "secondary", "error"],
+    primary: {
+      id: 0,
+      main: "#f46524",
+      light: "#63ccff",
+      textColor: "#000000",
+      backgroundColor: "#ffffff"
+    },
+    secondary: {
+      id: 1,
+      main: "#f46524",
+      light: "#ff5983",
+      textColor: "#ffffff",
+      backgroundColor: "#000000"
+    },
+    error: {
+      id: 2,
+      main: "#bb002f",
+      light: "#f9fbe7"
+    }
+  },
+  typography: {
+    fontFamily: [
+      "IBM Plex Sans",
+      "-apple-system",
+      "BlinkMacSystemFont",
+      '"Segoe UI"',
+      "Roboto",
+      '"Helvetica Neue"',
+      "Arial",
+      "sans-serif",
+      '"Apple Color Emoji"',
+      '"Segoe UI Emoji"',
+      '"Segoe UI Symbol"'
+    ].join(",")
+  }
+});
 
 export default class App extends Component {
   state = {
-    loggedInUser: localStorage.getItem("loggedInUser") || null
+    loggedInUser: localStorage.getItem("loggedInUser") || null,
+    activePaletteId: 0,
+    darkMode: false
   };
 
   loginUser = username => {
@@ -27,9 +71,37 @@ export default class App extends Component {
     localStorage.removeItem("loggedInUser");
   };
 
+  get activePaletteName() {
+    return THEME.palette.list[this.state.activePaletteId];
+  }
+
+  get activePalette() {
+    return THEME.palette[this.activePaletteName];
+  }
+
+  changePalette = e => {
+    this.setState(prevState => {
+      if (prevState.darkMode) {
+        return {
+          activePaletteId: THEME.palette.primary.id,
+          darkMode: false
+        };
+      } else {
+        return {
+          activePaletteId: THEME.palette.secondary.id,
+          darkMode: true
+        };
+      }
+    });
+  };
+
   render() {
+    console.log(this.activePalette);
     return (
-      <div>
+
+    <MuiThemeProvider theme={THEME}>
+        <div style={{ backgroundColor: this.activePalette.backgroundColor, color: this.activePalette.textColor }}>
+          {/* <ModelCard /> */}
         {/* <ModelCard /> */}
         <Header
           client={this.props.client}
@@ -42,9 +114,15 @@ export default class App extends Component {
           <HomePage path="/" />
           <CategoriesPage path="/categories" />
           <SingleImagePage
+
             client={this.props.client}
-            path="/images/:image_id"
+            loginUser={this.loginUser}
+            loggedInUser={this.state.loggedInUser}
+            logoutUser={this.logoutUser}
+            changePalette={this.changePalette}
+            darkMode={this.state.darkMode}
           />
+
           <AboutPage path="/about_us" />
           <SignUp path="/sign_up" loginUser={this.loginUser} />
           <Profile path="/:username" loggedInUser={this.state.loggedInUser} />
@@ -52,6 +130,8 @@ export default class App extends Component {
         </Router>
         <Footer />
       </div>
+        </MuiThemeProvider>
+
     );
   }
 }

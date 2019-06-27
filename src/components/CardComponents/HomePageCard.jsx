@@ -19,8 +19,9 @@ const useStyles = makeStyles({
   },
   card: {
     width: 300,
-    marginLeft: 10,
-    marginBottom: 20
+    marginLeft: 15,
+    marginRight: 15,
+    marginBottom: 30
   },
   media: {
     height: 300
