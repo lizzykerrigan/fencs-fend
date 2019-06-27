@@ -81,12 +81,7 @@ export default function SimpleCard() {
         <Typography className={classes.pos} color="textSecondary">
           The Team:
         </Typography>
-        <Grid
-          container
-          justify="space-around"
-          className={classes.root}
-          spacing={2}
-        >
+        <Grid container justify="space-around" spacing={2}>
           <Card className={classes.teamcard}>
             <Avatar
               className={classes.avatar}
@@ -173,7 +168,7 @@ export default function SimpleCard() {
       </CardContent>
       <Divider variant="middle" />
       <br />
-      <Grid container justify="center" className={classes.root}>
+      <Grid container justify="center">
         <Card className={classes.teamcard}>
           <Avatar className={classes.avatar} src={icon} />
           <CardActions>
