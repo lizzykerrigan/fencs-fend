@@ -98,23 +98,14 @@ export default class App extends Component {
   render() {
     console.log(this.activePalette);
     return (
-
-    <MuiThemeProvider theme={THEME}>
-        <div style={{ backgroundColor: this.activePalette.backgroundColor, color: this.activePalette.textColor }}>
-          {/* <ModelCard /> */}
-        {/* <ModelCard /> */}
-        <Header
-          client={this.props.client}
-          loginUser={this.loginUser}
-          loggedInUser={this.state.loggedInUser}
-          logoutUser={this.logoutUser}
-        />
-
-        <Router>
-          <HomePage path="/" />
-          <CategoriesPage path="/categories" />
-          <SingleImagePage
-
+      <MuiThemeProvider theme={THEME}>
+        <div
+          style={{
+            backgroundColor: this.activePalette.backgroundColor,
+            color: this.activePalette.textColor
+          }}
+        >
+          <Header
             client={this.props.client}
             loginUser={this.loginUser}
             loggedInUser={this.state.loggedInUser}
@@ -123,15 +114,21 @@ export default class App extends Component {
             darkMode={this.state.darkMode}
           />
 
-          <AboutPage path="/about_us" />
-          <SignUp path="/sign_up" loginUser={this.loginUser} />
-          <Profile path="/:username" loggedInUser={this.state.loggedInUser} />
-          <UploadModel path="/upload_model" />
-        </Router>
-        <Footer />
-      </div>
-        </MuiThemeProvider>
-
+          <Router>
+            <HomePage path="/" />
+            <CategoriesPage path="/categories" />
+            <SingleImagePage
+              client={this.props.client}
+              path="/images/:image_id"
+            />
+            <AboutPage path="/about_us" />
+            <SignUp path="/sign_up" loginUser={this.loginUser} />
+            <Profile path="/:username" loggedInUser={this.state.loggedInUser} />
+            <UploadModel path="/upload_model" />
+          </Router>
+          <Footer />
+        </div>
+      </MuiThemeProvider>
     );
   }
 }
