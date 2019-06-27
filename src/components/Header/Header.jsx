@@ -96,13 +96,13 @@ const styles = theme => ({
     color: "#000000",
     transition: "0.4s",
     "&:hover": {
-      backgroundColor: "#ff9800"
+      backgroundColor: "#f57c00"
     }
   },
   logoutScoll: {
     transition: "0.4s",
     "&:hover": {
-      backgroundColor: "#ffa726"
+      backgroundColor: "#f57c00"
     }
   }
 });

@@ -17,7 +17,10 @@ const styles = theme => ({
     flexDirection: "column",
     flex: 1,
     marginLeft: "1rem",
-    maxWidth: "60px"
+    maxWidth: "60px",
+    "&:hover": {
+      backgroundColor: "#f57c00"
+    }
   },
   textField: {
     display: "flex",

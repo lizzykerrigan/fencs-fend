@@ -1,4 +1,5 @@
 import React from "react";
+import SimpleCard from "../CardComponents/usersCard";
 import { makeStyles } from "@material-ui/core/styles";
 import clsx from "clsx";
 import Card from "@material-ui/core/Card";
@@ -14,6 +15,9 @@ import FavoriteIcon from "@material-ui/icons/Favorite";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import Button from "@material-ui/core/Button";
 import ModelCard from "../3dModel/3dModelCard";
+import { gql } from "apollo-boost";
+import Grid from "@material-ui/core/Grid";
+import { Query } from "react-apollo";
 
 const useStyles = makeStyles(theme => ({
   voted: {
@@ -46,6 +50,11 @@ const useStyles = makeStyles(theme => ({
   },
   avatar: {
     backgroundColor: red[500]
+  },
+  contactDesigner: {
+    "&:hover": {
+      backgroundColor: "#f57c00"
+    }
   }
 }));
 
@@ -55,6 +64,7 @@ const SingleImagePageCard = props => {
   const [background, setBackground] = React.useState(
     "https://i.imgur.com/8J6rlJZ.jpg"
   );
+  const [users, setUsers] = React.useState();
   const {
     title,
     price,
@@ -75,7 +85,7 @@ const SingleImagePageCard = props => {
         <CardHeader
           avatar={<Avatar aria-label="Recipe" className={classes.avatar} />}
           action={
-            <Button>
+            <Button className={classes.contactDesigner}>
               <Typography>Contact Designer</Typography>
             </Button>
           }
@@ -113,9 +123,7 @@ const SingleImagePageCard = props => {
               <Typography>Pilcrow</Typography>
             </Button>
           </div>
-          <Typography variant="body2" color="textSecondary" component="p">
-            {description}
-          </Typography>
+          <Typography>Description: {description}</Typography>
         </CardContent>
         <CardActions disableSpacing>
           <IconButton
@@ -144,14 +152,42 @@ const SingleImagePageCard = props => {
         <Collapse in={expanded} timeout="auto" unmountOnExit>
           <CardContent>
             <Typography paragraph>
-              <i class="fab fa-sketch fa-2x" /> {posted_by}
+              <i className="fab fa-sketch fa-2x" /> Designer: {posted_by}
             </Typography>
             <Typography paragraph>
-              <i class="far fa-money-bill-alt fa-2x " /> .£{price}
+              <i className="far fa-money-bill-alt fa-2x " /> 3D Design price: £
+              {price}
             </Typography>
             <Typography paragraph>
-              <i class="far fa-flag fa-2x" />.{category}
+              <i className="far fa-flag fa-2x" />
+              {category}
             </Typography>
+            <Grid container spacing={2}>
+              <Grid item xs={12}>
+                <Grid container justify="center" spacing={2}>
+                  <Query
+                    query={gql`
+                      {
+                        users(where: { owns_printer: { _eq: true } }) {
+                          username
+                          location
+                          rating
+                          owns_printer
+                          date_joined
+                        }
+                      }
+                    `}
+                  >
+                    {({ loading, error, data }) => {
+                      if (loading) return <p>Loading...</p>;
+                      if (error) return <h1>{error.message}</h1>;
+
+                      return data.users.map(user => <SimpleCard user={user} />);
+                    }}
+                  </Query>
+                </Grid>
+              </Grid>
+            </Grid>
           </CardContent>
         </Collapse>
       </Card>
