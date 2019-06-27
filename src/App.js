@@ -10,7 +10,6 @@ import SingleImagePage from "./components/imagePage/SingleImagePage";
 import Profile from "./components/Profile/Profile";
 import UploadModel from "./components/UploadModel/UploadModel";
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core";
-import { orange, yellow, purple } from "@material-ui/core/colors";
 
 const THEME = createMuiTheme({
   palette: {
@@ -98,7 +97,12 @@ export default class App extends Component {
     console.log(this.activePalette);
     return (
       <MuiThemeProvider theme={THEME}>
-        <div style={{ backgroundColor: this.activePalette.backgroundColor, color: this.activePalette.textColor }}>
+        <div
+          style={{
+            backgroundColor: this.activePalette.backgroundColor,
+            color: this.activePalette.textColor
+          }}
+        >
           {/* <ModelCard /> */}
           <Header
             client={this.props.client}

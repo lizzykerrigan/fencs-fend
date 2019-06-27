@@ -78,7 +78,6 @@ const SingleImagePageCard = props => {
   const [background, setBackground] = React.useState(
     "https://i.imgur.com/8J6rlJZ.jpg"
   );
-  const [users, setUsers] = React.useState();
   const {
     title,
     price,

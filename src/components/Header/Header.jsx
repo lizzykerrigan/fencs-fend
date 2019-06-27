@@ -14,7 +14,6 @@ import { Link } from "@reach/router";
 import LoginBox from "../Login/LoginBox";
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
-import { inherits } from "util";
 import Switch from "@material-ui/core/Switch";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 
@@ -104,6 +103,14 @@ const styles = theme => ({
     "&:hover": {
       backgroundColor: "#f57c00"
     }
+  },
+  loggedInScroll: {
+    marginTop: 11,
+    marginRight: 10,
+    color: "#f57c00"
+  },
+  profileButtonScroll: {
+    color: "Black"
   }
 });
 
@@ -262,18 +269,17 @@ class Header extends Component {
                   justify="center"
                   alignItems="stretch"
                 >
-                  <Typography className={classes.loggedIn}>
+                  <Typography
+                    className={
+                      this.state.isScrolled === false
+                        ? classes.loggedIn
+                        : classes.loggedInScroll
+                    }
+                  >
                     Logged in as:
                     <strong> {`${this.props.loggedInUser}`}</strong>
                   </Typography>
-                  <Button
-                    className={
-                      this.state.isScrolled === false
-                        ? classes.logout
-                        : classes.loggedInScroll
-                    }
-                    onClick={this.props.logoutUser}
-                  >
+                  <Button onClick={this.props.logoutUser}>
                     <Typography>Logout</Typography>
                   </Button>
                   <IconButton
@@ -282,7 +288,11 @@ class Header extends Component {
                     edge="end"
                     aria-label="Account of current user"
                     color="inherit"
-                    className={classes.profileButton}
+                    className={
+                      this.state.isScrolled === false
+                        ? classes.profileButton
+                        : classes.profileButtonScroll
+                    }
                   >
                     <AccountCircle />
                   </IconButton>
