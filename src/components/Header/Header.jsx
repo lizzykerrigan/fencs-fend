@@ -22,10 +22,6 @@ const AdapterLink = React.forwardRef((props, ref) => (
   <Link innerRef={ref} {...props} />
 ));
 
-const storeScroll = () => {
-  document.documentElement.dataset.scroll = window.scrollY;
-};
-
 const styles = theme => ({
   loggedIn: {
     marginTop: 11,

@@ -12,7 +12,7 @@ import Typography from "@material-ui/core/Typography";
 import { red } from "@material-ui/core/colors";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import MoreVertIcon from "@material-ui/icons/MoreVert";
+import Button from "@material-ui/core/Button";
 import ModelCard from "../3dModel/3dModelCard";
 
 const useStyles = makeStyles(theme => ({
@@ -21,7 +21,7 @@ const useStyles = makeStyles(theme => ({
   },
   card: {
     padding: 15,
-    marginTop: 20,
+    marginTop: 50,
     width: "80%",
     marginLeft: "8%",
     backgroundColor: "whitesmoke"
@@ -52,13 +52,15 @@ const useStyles = makeStyles(theme => ({
 const SingleImagePageCard = props => {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
+  const [background, setBackground] = React.useState(
+    "https://i.imgur.com/8J6rlJZ.jpg"
+  );
   const {
     title,
     price,
     description,
     posted_by,
     date_uploaded,
-    display_name,
     likes,
     category
   } = props.image;
@@ -73,15 +75,44 @@ const SingleImagePageCard = props => {
         <CardHeader
           avatar={<Avatar aria-label="Recipe" className={classes.avatar} />}
           action={
-            <IconButton aria-label="Settings">
-              <MoreVertIcon />
-            </IconButton>
+            <Button>
+              <Typography>Contact Designer</Typography>
+            </Button>
           }
           title={title}
           subheader={date_uploaded}
         />
-        <ModelCard image={props.image} />
+        <ModelCard background={background} image={props.image} />
         <CardContent>
+          <div>
+            <Typography>Themes:</Typography>
+            <Button
+              onClick={() => setBackground("https://i.imgur.com/8J6rlJZ.jpg")}
+            >
+              <Typography>NC Lecture Room</Typography>
+            </Button>
+            <Button
+              onClick={() => setBackground("https://i.imgur.com/fcpVySI.jpg")}
+            >
+              <Typography>NC Workspace</Typography>
+            </Button>
+            <Button
+              onClick={() => setBackground("https://i.imgur.com/m4mMb0F.jpg")}
+            >
+              <Typography>Print Works</Typography>
+            </Button>
+            <Button
+              onClick={() => setBackground("https://i.imgur.com/Uyyv1fo.jpg")}
+            >
+              <Typography>Print Works Inside</Typography>
+            </Button>
+            <Button
+              className={classes.themeButton}
+              onClick={() => setBackground("")}
+            >
+              <Typography>Pilcrow</Typography>
+            </Button>
+          </div>
           <Typography variant="body2" color="textSecondary" component="p">
             {description}
           </Typography>
@@ -112,7 +143,6 @@ const SingleImagePageCard = props => {
         </CardActions>
         <Collapse in={expanded} timeout="auto" unmountOnExit>
           <CardContent>
-
             <Typography paragraph>
               <i class="fab fa-sketch fa-2x" /> {posted_by}
             </Typography>
@@ -122,8 +152,6 @@ const SingleImagePageCard = props => {
             <Typography paragraph>
               <i class="far fa-flag fa-2x" />.{category}
             </Typography>
-            
-
           </CardContent>
         </Collapse>
       </Card>

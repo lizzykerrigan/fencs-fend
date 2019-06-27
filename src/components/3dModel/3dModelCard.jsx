@@ -12,10 +12,26 @@ export default class ModelCard extends Component {
   state = { images: null };
 
   componentDidMount() {
-    this.sceneSetup();
+    this.sceneSetup(this.state.background);
     this.addCustomSceneObjects();
     this.startAnimationLoop();
     window.addEventListener("resize", this.handleWinndowResize, false);
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.background !== this.props.background) {
+      console.log(this.props.background);
+      const geometry = new THREE.SphereGeometry(500, 60, 40);
+      geometry.scale(-1, 1, 1);
+
+      const material = new THREE.MeshBasicMaterial({
+        map: new THREE.TextureLoader().load(this.props.background)
+      });
+
+      const mesh = new THREE.Mesh(geometry, material);
+
+      this.scene.add(mesh);
+    }
   }
 
   componentWillUnmount() {
@@ -31,7 +47,7 @@ export default class ModelCard extends Component {
     geometry.scale(-1, 1, 1);
 
     const material = new THREE.MeshBasicMaterial({
-      map: new THREE.TextureLoader().load("https://i.imgur.com/8J6rlJZ.jpg")
+      map: new THREE.TextureLoader().load(this.props.background)
     });
 
     const mesh = new THREE.Mesh(geometry, material);
