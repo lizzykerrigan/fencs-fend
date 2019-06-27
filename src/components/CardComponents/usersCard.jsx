@@ -9,8 +9,9 @@ import { flexbox } from "@material-ui/system";
 
 const useStyles = makeStyles({
   card: {
-    width: "25%",
-    boxShadow: "none"
+    width: "23%",
+    boxShadow: "none",
+    margin: 2
   },
   bullet: {
     display: "inline-block",

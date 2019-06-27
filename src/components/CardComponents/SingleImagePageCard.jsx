@@ -55,6 +55,20 @@ const useStyles = makeStyles(theme => ({
     "&:hover": {
       backgroundColor: "#f57c00"
     }
+  },
+  themeBtn: {
+    "&:hover": {
+      backgroundColor: "#f57c00",
+      transition: "0.4s",
+      color: "white"
+    }
+  },
+  themeDesc: {
+    marginLeft: 6
+  },
+  printS: {
+    marginLeft: 20,
+    marginBottom: 5
   }
 }));
 
@@ -95,35 +109,41 @@ const SingleImagePageCard = props => {
         <ModelCard background={background} image={props.image} />
         <CardContent>
           <div>
-            <Typography>Themes:</Typography>
+            <Typography className={classes.themeDesc}>Themes:</Typography>
             <Button
+              className={classes.themeBtn}
               onClick={() => setBackground("https://i.imgur.com/8J6rlJZ.jpg")}
             >
               <Typography>NC Lecture Room</Typography>
             </Button>
             <Button
+              className={classes.themeBtn}
               onClick={() => setBackground("https://i.imgur.com/fcpVySI.jpg")}
             >
               <Typography>NC Workspace</Typography>
             </Button>
             <Button
+              className={classes.themeBtn}
               onClick={() => setBackground("https://i.imgur.com/m4mMb0F.jpg")}
             >
               <Typography>Print Works</Typography>
             </Button>
             <Button
+              className={classes.themeBtn}
               onClick={() => setBackground("https://i.imgur.com/Uyyv1fo.jpg")}
             >
               <Typography>Print Works Inside</Typography>
             </Button>
             <Button
-              className={classes.themeButton}
+              className={classes.themeBtn}
               onClick={() => setBackground("")}
             >
               <Typography>Pilcrow</Typography>
             </Button>
           </div>
-          <Typography>Description: {description}</Typography>
+          <Typography className={classes.themeDesc}>
+            Description: {description}
+          </Typography>
         </CardContent>
         <CardActions disableSpacing>
           <IconButton
@@ -152,15 +172,18 @@ const SingleImagePageCard = props => {
         <Collapse in={expanded} timeout="auto" unmountOnExit>
           <CardContent>
             <Typography paragraph>
-              <i className="fab fa-sketch fa-2x" /> Designer: {posted_by}
+              <strong>Designer:</strong> {posted_by}
             </Typography>
             <Typography paragraph>
-              <i className="far fa-money-bill-alt fa-2x " /> 3D Design price: £
-              {price}
+              {/* <i className="far fa-money-bill-alt fa-2x " /> */}
+              <strong>3D Design price:</strong> £{price}
             </Typography>
             <Typography paragraph>
-              <i className="far fa-flag fa-2x" />
+              <strong>Category: </strong>
               {category}
+            </Typography>
+            <Typography className={classes.printS}>
+              <strong>Printing Services:</strong>
             </Typography>
             <Grid container spacing={2}>
               <Grid item xs={12}>
