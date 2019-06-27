@@ -14,40 +14,12 @@ const client = new ApolloClient({
   uri: "https://fencs-back-end.herokuapp.com/v1/graphql"
 });
 
-const theme = createMuiTheme({
-  palette: {
-    primary: {
-      main: "#f46524"
-    },
-    secondary: {
-      main: yellow[500]
-    },
-    error: {
-      main: purple[700]
-    }
-  },
-  typography: {
-    fontFamily: [
-      "-apple-system",
-      "BlinkMacSystemFont",
-      '"Segoe UI"',
-      "Roboto",
-      '"Helvetica Neue"',
-      "Arial",
-      "sans-serif",
-      '"Apple Color Emoji"',
-      '"Segoe UI Emoji"',
-      '"Segoe UI Symbol"'
-    ].join(",")
-  }
-});
+
 
 ReactDOM.render(
-  <MuiThemeProvider theme={theme}>
     <ApolloProvider client={client}>
       <App client={client} />
-    </ApolloProvider>
-  </MuiThemeProvider>,
+    </ApolloProvider>,
   document.getElementById("root")
 );
 
