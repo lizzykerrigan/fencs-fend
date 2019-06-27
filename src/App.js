@@ -124,7 +124,10 @@ export default class App extends Component {
             <AboutPage path="/about_us" />
             <SignUp path="/sign_up" loginUser={this.loginUser} />
             <Profile path="/:username" loggedInUser={this.state.loggedInUser} />
-            <UploadModel path="/upload_model" />
+            <UploadModel
+              path="/upload_model"
+              loggedInUser={this.state.loggedInUser}
+            />
           </Router>
           <Footer />
         </div>
