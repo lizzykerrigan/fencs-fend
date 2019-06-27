@@ -156,9 +156,7 @@ const Profile = props => {
           }}
         </Query>
       ) : (
-        <Button component={AdapterLink} to="/sign_up">
-          Sign Up
-        </Button>
+        <Typography>Please Sign Up</Typography>
       )}
     </div>
   );
