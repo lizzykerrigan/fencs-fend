@@ -81,7 +81,7 @@ class LoginBox extends React.Component {
                 id="login"
                 label={this.state.err ? "Invalid User !" : "Input Username"}
                 onChange={this.storeUserInput}
-                helperText="fraserkemp"
+                helperText="fraser"
                 variant="outlined"
                 className={classes.textField}
               />
