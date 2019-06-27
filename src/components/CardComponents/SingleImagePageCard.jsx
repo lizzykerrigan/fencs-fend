@@ -19,6 +19,7 @@ import { gql } from "apollo-boost";
 import Grid from "@material-ui/core/Grid";
 import { Query } from "react-apollo";
 import { Link } from "@reach/router";
+import icon from "../UploadModel/icon.png";
 
 const AdapterLink = React.forwardRef((props, ref) => (
   <Link innerRef={ref} {...props} />
@@ -54,7 +55,7 @@ const useStyles = makeStyles(theme => ({
     transform: "rotate(180deg)"
   },
   avatar: {
-    backgroundColor: red[500]
+    backgroundColor: theme.palette.secondary.main
   },
   contactDesigner: {
     "&:hover": {
@@ -101,7 +102,9 @@ const SingleImagePageCard = props => {
     <div className={classes.cardWrapper}>
       <Card className={classes.card}>
         <CardHeader
-          avatar={<Avatar aria-label="Recipe" className={classes.avatar} />}
+          avatar={
+            <Avatar className={classes.avatar} img src={icon} alt="logo" />
+          }
           action={
             <Button
               className={classes.contactDesigner}
