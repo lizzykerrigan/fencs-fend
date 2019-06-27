@@ -183,7 +183,6 @@ const SingleImagePageCard = props => {
               <strong>Designer:</strong> {posted_by}
             </Typography>
             <Typography paragraph>
-              {/* <i className="far fa-money-bill-alt fa-2x " /> */}
               <strong>3D Design price:</strong> £{price}
             </Typography>
             <Typography paragraph>

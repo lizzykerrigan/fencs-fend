@@ -6,6 +6,7 @@ import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
 import MenuIcon from "@material-ui/icons/Menu";
 import AccountCircle from "@material-ui/icons/AccountCircle";
+import ShoppingCart from "@material-ui/icons/ShoppingCart";
 import SwipeableDrawer from "@material-ui/core/SwipeableDrawer";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
@@ -109,8 +110,13 @@ const styles = theme => ({
     marginRight: 10,
     color: "Black"
   },
+  profileButton: {
+    color: "white",
+    marginRight: 3
+  },
   profileButtonScroll: {
-    color: "Black"
+    color: "Black",
+    marginRight: 3
   }
 });
 
@@ -282,6 +288,18 @@ class Header extends Component {
                   <Button onClick={this.props.logoutUser}>
                     <Typography>Logout</Typography>
                   </Button>
+                  <IconButton
+                    edge="end"
+                    aria-label="Account of current user"
+                    color="inherit"
+                    className={
+                      this.state.isScrolled === false
+                        ? classes.profileButton
+                        : classes.profileButtonScroll
+                    }
+                  >
+                    <ShoppingCart />
+                  </IconButton>
                   <IconButton
                     component={AdapterLink}
                     to={`/${this.props.loggedInUser}`}
