@@ -1,6 +1,7 @@
 import "./App.css";
 import React, { Component } from "react";
 import Header from "./components/Header/Header";
+import Footer from "./components/Footer/Footer";
 import CategoriesPage from "./components/CategoriesPage/CategoriesPage";
 import { Router } from "@reach/router";
 import AboutPage from "./components/AboutPage/AboutPage";
@@ -104,7 +105,6 @@ export default class App extends Component {
             color: this.activePalette.textColor
           }}
         >
-          {/* <ModelCard /> */}
           <Header
             client={this.props.client}
             loginUser={this.loginUser}
@@ -113,6 +113,7 @@ export default class App extends Component {
             changePalette={this.changePalette}
             darkMode={this.state.darkMode}
           />
+
           <Router>
             <HomePage path="/" />
             <CategoriesPage path="/categories" />
@@ -123,9 +124,13 @@ export default class App extends Component {
             <AboutPage path="/about_us" />
             <SignUp path="/sign_up" loginUser={this.loginUser} />
             <Profile path="/:username" loggedInUser={this.state.loggedInUser} />
-            <UploadModel path="/upload_model" />
             <Contact path="/contact/:username" />
+            <UploadModel
+              path="/upload_model"
+              loggedInUser={this.state.loggedInUser}
+            />
           </Router>
+          <Footer />
         </div>
       </MuiThemeProvider>
     );

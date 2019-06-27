@@ -183,7 +183,12 @@ class Header extends Component {
           >
             <ListItemText primary="Upload a 3D Model" />
           </ListItem>
-          <ListItem button component={AdapterLink} to="/profile" key="profile">
+          <ListItem
+            button
+            component={AdapterLink}
+            to={this.props.loggedInUser ? "/profile" : "/sign_up"}
+            key="profile"
+          >
             <ListItemText primary="Profile" />
           </ListItem>
           <ListItem

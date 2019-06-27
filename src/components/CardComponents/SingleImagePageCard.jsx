@@ -146,8 +146,8 @@ const SingleImagePageCard = props => {
               <Typography>Print Works Inside</Typography>
             </Button>
             <Button
-              className={classes.themeBtn}
-              onClick={() => setBackground("")}
+              className={classes.themeButton}
+              onClick={() => setBackground("https://i.imgur.com/D17D5Oi.jpg")}
             >
               <Typography>Pilcrow</Typography>
             </Button>
