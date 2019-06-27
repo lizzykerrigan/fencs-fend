@@ -37,7 +37,6 @@ const useStyles = makeStyles(theme => ({
     marginTop: "auto",
     backgroundColor: "#e0e0e0",
     textAlign: "center",
-    position: "fixed",
     left: 0,
     bottom: 0,
     width: "100%"
