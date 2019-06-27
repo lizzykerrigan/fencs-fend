@@ -36,7 +36,7 @@ const useStyles = makeStyles(theme => ({
   card: {
     width: "90%",
     marginLeft: "5%",
-    marginTop: "20px",
+    marginTop: "80px",
     marginBottom: "30px"
   },
   imagesCard: {
@@ -135,6 +135,7 @@ const Profile = props => {
                     display_name
                     thumbnail_url
                     likes
+                    image_id
                         }
                       }
                       `}
@@ -155,9 +156,7 @@ const Profile = props => {
           }}
         </Query>
       ) : (
-        <Button component={AdapterLink} to="/sign_up">
-          Sign Up
-        </Button>
+        <Typography>Please Sign Up</Typography>
       )}
     </div>
   );
